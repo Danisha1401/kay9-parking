@@ -22,6 +22,11 @@
   var cur = -1;
   var range = 0;
 
+  /* A refresh would otherwise drop the visitor back into the middle of the pinned
+     sequence, which reads as a broken page. Reloads start at the top unless the
+     URL actually names a section. */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
   /* ---- place the anchor targets at the centre of each step band ---- */
   function layout() {
     var stageH = stage.getBoundingClientRect().height || window.innerHeight;
@@ -102,7 +107,8 @@
   window.addEventListener('scroll', onScroll, { passive: true });
 
   layout();
-  honourHash();
+  if (location.hash) honourHash();
+  else window.scrollTo(0, 0);
   apply(stepNow());
   progress();
 

@@ -106,15 +106,27 @@
 
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  /* Belt and braces on the reload position: Safari can restore its own scroll
+     offset after this script has already run, so retry on load and once more on
+     the next frame. A URL that names a section is still honoured. */
+  function toTop() { if (!location.hash) window.scrollTo(0, 0); }
+
   layout();
   if (location.hash) honourHash();
-  else window.scrollTo(0, 0);
+  else toTop();
   apply(stepNow());
   progress();
 
   /* images finishing late can change the document height */
   window.addEventListener('load', function () {
     layout();
+    toTop();
+    window.requestAnimationFrame(toTop);
     onScroll();
+  });
+
+  /* returning via the back/forward cache */
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) { toTop(); onScroll(); }
   });
 })();

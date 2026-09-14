@@ -153,8 +153,14 @@ p{margin:0 0 1em}
 }
 .hero-in{
   max-width:var(--wrap);margin:0 auto;padding:0 clamp(18px,4vw,40px);
-  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,64px);align-items:center
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  grid-template-areas:"head fig" "copy fig" "chips fig";
+  column-gap:clamp(24px,5vw,64px);align-content:center
 }
+.hero-head{grid-area:head}
+.hero-copy{grid-area:copy}
+.hero-chips{grid-area:chips}
+.hero-fig{grid-area:fig}
 .lede{font-size:clamp(1.02rem,1.5vw,1.18rem);color:var(--muted);max-width:38ch;margin-top:1.2rem}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.8rem}
 .hero-chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:2rem 0 0}
@@ -519,42 +525,43 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
     background:var(--blue);color:#fff;border-radius:999px;font-weight:650;font-size:.95rem
   }
 
-  /* --- hero: a tight copy block, then a full-bleed panel holding the machine ---
-     Stacking copy and picture in one flat column read as three unrelated things,
-     so the image now sits in its own edge-to-edge panel that runs into the
-     section below it. --------------------------------------------------------- */
-  .hero{padding-top:calc(var(--hdr-h) + 24px);padding-bottom:0}
-  .hero-in{grid-template-columns:1fr;gap:0}
-  h1{font-size:clamp(2.05rem,9.4vw,3.2rem);line-height:1.02;letter-spacing:-.02em}
-  .eyebrow{font-size:.65rem;letter-spacing:.14em;margin-bottom:.65rem}
-  .lede{max-width:none;font-size:1rem;margin-top:.8rem}
+  /* --- hero: full-width headline, then copy on the left and the machine on the
+     right, bleeding off the edge of the screen so it fills its column ---------- */
+  .hero{padding-top:calc(var(--hdr-h) + 22px);padding-bottom:26px}
+  .hero-in{
+    grid-template-columns:minmax(0,1fr) 40%;
+    grid-template-areas:"head head" "copy fig" "chips chips" "cue cue";
+    column-gap:12px;align-items:center
+  }
+  h1{font-size:clamp(1.95rem,8.6vw,3.2rem);line-height:1.03;letter-spacing:-.02em}
+  .eyebrow{font-size:.64rem;letter-spacing:.14em;margin-bottom:.6rem}
+  .hero-head{margin-bottom:16px}
+  .hero-copy{align-self:start}                   /* sit under the headline, not centred in the row */
+  .lede{max-width:none;font-size:.95rem;margin:0}
   .lede-more{display:none}                       /* the long tail belongs on wide screens */
-  .hero-btns{margin-top:1.25rem;gap:10px}
-  .hero-btns .btn{flex:1 1 46%;justify-content:center;padding-inline:1rem}
-  .hero-chips{margin-top:1rem;gap:6px}
+  .hero-btns{margin-top:1.1rem;gap:9px}
+  .hero-btns .btn{flex:1 1 100%;justify-content:center;padding:.85em 1rem;font-size:.9rem}
+  .hero-chips{margin-top:1.3rem;gap:6px}
   .hero-chips li{font-size:.7rem;padding:.4em .85em}
 
   .hero-fig{
-    position:relative;max-width:none;
-    margin:26px calc(-1 * clamp(18px,4vw,40px)) 0;
-    padding:22px 18px 0;border-radius:26px 26px 0 0;overflow:hidden;
-    flex-direction:column;align-items:center;
-    background:
-      radial-gradient(76% 50% at 50% 36%,rgba(0,176,240,.26) 0%,rgba(0,176,240,0) 72%),
-      linear-gradient(180deg,#e7f6fe 0%,#d8effa 58%,var(--wash) 100%)
+    position:relative;max-width:none;align-self:center;
+    margin-right:calc(-1 * clamp(18px,4vw,40px));
+    flex-direction:column;align-items:flex-end
   }
-  .hero-fig img{max-height:38svh;margin:0 auto;animation:none}
-  .hero-tag{
-    position:static;margin:16px 0 0;max-width:none;text-align:left;
-    background:rgba(255,255,255,.94);padding:.62rem .85rem
+  .hero-fig::before{                              /* glow, so the render is not floating on nothing */
+    content:"";position:absolute;inset:-6% -10% -4% -18%;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(0,176,240,.3),rgba(0,176,240,0) 72%)
   }
+  .hero-fig img{position:relative;max-height:46svh;width:auto;margin:0 0 0 auto;animation:none}
+  .hero-tag{display:none}                         /* too much furniture at this width */
   .hero-scroll{
-    display:block;margin:16px 0 0;padding-bottom:20px;text-align:center;
-    font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    grid-area:cue;display:block;margin:20px 0 0;text-align:center;
+    font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
     color:var(--blue-dd)
   }
   .hero-scroll::after{
-    content:"";display:block;width:1px;height:28px;margin:10px auto 0;
+    content:"";display:block;width:1px;height:24px;margin:8px auto 0;
     background:linear-gradient(180deg,var(--blue),rgba(0,176,240,0))
   }
   .scroll-cue{display:none}

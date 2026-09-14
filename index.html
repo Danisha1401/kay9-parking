@@ -13,7 +13,12 @@
 <meta property="og:description" content="Hydraulic and PLC-controlled parking systems that multiply capacity on the same footprint.">
 <meta property="og:image" content="assets/img/install-04.jpg">
 <meta property="og:type" content="website">
-<script>document.documentElement.className='js';</script>
+<script>
+document.documentElement.className='js';
+/* Safari restores the previous scroll position before deferred scripts run, which
+   drops returning visitors into the middle of the pinned build sequence. */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+</script>
 </head>
 <body>
 
@@ -87,9 +92,11 @@
 <section class="hero">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-in">
-    <div class="hero-copy">
+    <div class="hero-head">
       <p class="eyebrow reveal">Parking System Manufacture · Mumbai</p>
       <h1 class="reveal" style="--d:.06s">Same plot.<br>Many more cars.</h1>
+    </div>
+    <div class="hero-copy">
       <p class="lede reveal" style="--d:.12s">
         Fully hydraulic and PLC-controlled parking systems — stack, pit, puzzle and
         tower.<span class="lede-more"> Designed, fabricated and installed to your site
@@ -99,18 +106,18 @@
         <a class="btn" href="#systems">See the systems</a>
         <a class="btn btn-ghost" href="tel:+919867932460">+91 98679 32460</a>
       </div>
-      <ul class="hero-chips reveal" style="--d:.24s">
-        <li>Fully hydraulic</li><li>24V DC control</li><li>PLC operated</li><li>Custom sizes</li>
-      </ul>
     </div>
+    <ul class="hero-chips reveal" style="--d:.24s">
+      <li>Fully hydraulic</li><li>24V DC control</li><li>PLC operated</li><li>Custom sizes</li>
+    </ul>
     <figure class="hero-fig reveal" style="--d:.1s">
       <img src="assets/img/hero-tower.png" alt="Kay9 tower parking system holding rows of cars on both sides of a central lift shaft" width="379" height="1050">
       <figcaption class="hero-tag">
         <strong>Tower Parking</strong>
         <span>Less land area coverage, high usage rate of space</span>
       </figcaption>
-      <p class="hero-scroll" aria-hidden="true">Scroll to build a car park</p>
     </figure>
+    <p class="hero-scroll" aria-hidden="true">Scroll to build a car park</p>
   </div>
   <a class="scroll-cue" href="#systems" aria-label="Scroll to systems">
     <span></span>

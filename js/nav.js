@@ -107,6 +107,15 @@
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
 
+  /* safety net: anything already on screen when the page finishes loading is shown
+     whether or not the observer has fired, so no one ever meets a blank hero */
+  window.addEventListener('load', function () {
+    document.querySelectorAll('.reveal:not(.in)').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+    });
+  });
+
   /* ---------- spec dialogs ---------- */
   function openDialog(dlg) {
     if (!dlg) return;

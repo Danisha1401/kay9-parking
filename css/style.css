@@ -518,14 +518,21 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
     background:var(--blue);color:#fff;border-radius:999px;font-weight:650;font-size:.95rem
   }
 
-  /* --- hero --- */
-  .hero-in{grid-template-columns:1fr;gap:26px}
-  .hero-fig{order:-1;max-width:320px;margin-inline:auto;flex-direction:column;align-items:stretch}
-  .hero-fig img{max-height:44svh;margin-inline:auto}
-  .lede{max-width:none}
+  /* --- hero: words first, picture second, nothing wider than the screen --- */
+  .hero{padding-top:calc(var(--hdr-h) + 26px);padding-bottom:34px}
+  .hero-in{grid-template-columns:1fr;gap:20px}
+  h1{font-size:clamp(2.05rem,9.2vw,3.2rem);line-height:1.05}
+  .eyebrow{font-size:.66rem;letter-spacing:.14em}
+  .lede{max-width:none;font-size:1rem;margin-top:.9rem}
+  .hero-btns{margin-top:1.4rem;gap:10px}
+  .hero-btns .btn{flex:1 1 46%;justify-content:center;padding-inline:1rem}
+  .hero-chips{margin-top:1.1rem;gap:6px}
+  .hero-chips li{font-size:.7rem;padding:.4em .85em}
+  .hero-fig{max-width:none;flex-direction:column;align-items:center}
+  .hero-fig img{max-height:38svh;margin-inline:auto}
+  .hero-tag{position:static;max-width:24rem;margin-top:12px;padding:.6rem .85rem;text-align:left}
   .scroll-cue{display:none}
   .hero-bg::before{background-size:44px 44px}
-  .hero-tag{position:static;max-width:none;margin-top:14px}
 
   /* --- build sequence: scene on top, copy below --- */
   .stage{
@@ -536,7 +543,12 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
   .panels{height:100%}
   .panel{justify-content:flex-start;padding-right:0}
   .panel h2{font-size:clamp(1.5rem,6.4vw,2.1rem)}
-  .panel-desc{font-size:.92rem;max-width:none}
+  /* long brochure paragraphs are trimmed here so the buttons stay in view —
+     the full text is in the "Full specifications" dialog */
+  .panel-desc{
+    font-size:.92rem;max-width:none;
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5;overflow:hidden
+  }
   .panel-points{gap:.38rem;margin-bottom:1rem}
   .panel-points li{font-size:.86rem}
   .plot-label,.scene-note{font-size:26px}
@@ -571,8 +583,9 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
 }
 
 @media (max-width:400px){
-  .stage{grid-template-rows:minmax(0,34svh) minmax(0,1fr)}
-  .panel-points li:nth-child(n+3){display:none}
+  .stage{grid-template-rows:minmax(0,36svh) minmax(0,1fr)}
+  .panel h2{font-size:1.5rem}
+  .panel-desc{font-size:.88rem;-webkit-line-clamp:4}
 }
 
 /* short landscape phones: give the copy room */

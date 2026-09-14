@@ -94,6 +94,16 @@
     }
   }
 
+  /* Tapping a system in the menu leaves e.g. #tower on the URL, and phone browsers
+     keep that URL for the tab. Every later visit would then reopen mid-sequence.
+     The link still works on arrival; the fragment is dropped once it has been used. */
+  function stripHash() {
+    if (location.hash && history.replaceState) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+  window.addEventListener('hashchange', function () { setTimeout(stripHash, 900); });
+
   var resizeTimer;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
@@ -112,7 +122,7 @@
   function toTop() { if (!location.hash) window.scrollTo(0, 0); }
 
   layout();
-  if (location.hash) honourHash();
+  if (location.hash) { honourHash(); setTimeout(stripHash, 300); }
   else toTop();
   apply(stepNow());
   progress();

@@ -88,7 +88,8 @@ p{margin:0 0 1em}
 .nav{margin-left:auto}
 .nav-list{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0}
 .nav-link{
-  display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.94rem;font-weight:560;
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  font:inherit;font-size:.94rem;font-weight:560;
   color:var(--ink);background:none;border:0;padding:.6em .85em;border-radius:8px;cursor:pointer;
   text-decoration:none;transition:color .2s,background .2s
 }
@@ -483,6 +484,13 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
   .why-grid{grid-template-columns:repeat(2,1fr)}
   .rail .rail-label{display:none}
 }
+/* between the mobile menu and a roomy desktop the header has to tuck in */
+@media (min-width:901px) and (max-width:1080px){
+  .hdr-in{gap:10px}
+  .nav-link{font-size:.88rem;padding:.55em .6em}
+  .brand-word{height:17px}
+  .btn-sm{font-size:.8rem;padding:.65em 1em}
+}
 @media (max-width:1024px){
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .gallery{grid-template-columns:repeat(3,1fr);grid-auto-rows:160px}
@@ -525,43 +533,46 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
     background:var(--blue);color:#fff;border-radius:999px;font-weight:650;font-size:.95rem
   }
 
-  /* --- hero: full-width headline, then copy on the left and the machine on the
-     right, bleeding off the edge of the screen so it fills its column ---------- */
-  .hero{padding-top:calc(var(--hdr-h) + 22px);padding-bottom:26px}
+  /* --- hero: full-width headline, then a copy column and a picture card of the
+     same height sitting beside it. The card keeps the render contained at every
+     screen width instead of letting it run off the edge. -------------------- */
+  .hero{padding-top:calc(var(--hdr-h) + 20px);padding-bottom:24px}
   .hero-in{
-    grid-template-columns:minmax(0,1fr) 40%;
+    grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
     grid-template-areas:"head head" "copy fig" "chips chips" "cue cue";
-    column-gap:12px;align-items:center
+    column-gap:14px;align-items:stretch
   }
-  h1{font-size:clamp(1.95rem,8.6vw,3.2rem);line-height:1.03;letter-spacing:-.02em}
-  .eyebrow{font-size:.64rem;letter-spacing:.14em;margin-bottom:.6rem}
+  h1{font-size:clamp(1.75rem,8.2vw,3.2rem);line-height:1.04;letter-spacing:-.02em}
+  .eyebrow{font-size:.62rem;letter-spacing:.13em;margin-bottom:.55rem}
   .hero-head{margin-bottom:16px}
-  .hero-copy{align-self:start}                   /* sit under the headline, not centred in the row */
-  .lede{max-width:none;font-size:.95rem;margin:0}
+  .hero-copy{align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+  .lede{max-width:none;font-size:.92rem;line-height:1.55;margin:0}
   .lede-more{display:none}                       /* the long tail belongs on wide screens */
-  .hero-btns{margin-top:1.1rem;gap:9px}
-  .hero-btns .btn{flex:1 1 100%;justify-content:center;padding:.85em 1rem;font-size:.9rem}
-  .hero-chips{margin-top:1.3rem;gap:6px}
-  .hero-chips li{font-size:.7rem;padding:.4em .85em}
+  .hero-btns{margin-top:1.05rem;padding-top:0;gap:8px}
+  .hero-btns .btn{flex:1 1 100%;justify-content:center;padding:.8em .9em;font-size:.88rem}
+  .hero-chips{margin-top:1.15rem;gap:6px}
+  .hero-chips li{font-size:.69rem;padding:.38em .8em}
 
   .hero-fig{
-    position:relative;max-width:none;align-self:center;
-    margin-right:calc(-1 * clamp(18px,4vw,40px));
-    flex-direction:column;align-items:flex-end
+    position:relative;align-self:stretch;margin:0;padding:0;overflow:hidden;
+    min-height:clamp(212px,28svh,288px);border-radius:18px;display:block;
+    background:
+      radial-gradient(68% 46% at 50% 38%,rgba(0,176,240,.28) 0%,rgba(0,176,240,0) 74%),
+      linear-gradient(165deg,#eaf7fe 0%,#d3ecfa 100%)
   }
-  .hero-fig::before{                              /* glow, so the render is not floating on nothing */
-    content:"";position:absolute;inset:-6% -10% -4% -18%;border-radius:50%;
-    background:radial-gradient(closest-side,rgba(0,176,240,.3),rgba(0,176,240,0) 72%)
+  .hero-fig img{
+    position:absolute;inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);
+    max-height:none;max-width:none;object-fit:contain;object-position:center bottom;
+    margin:0;animation:none
   }
-  .hero-fig img{position:relative;max-height:46svh;width:auto;margin:0 0 0 auto;animation:none}
   .hero-tag{display:none}                         /* too much furniture at this width */
   .hero-scroll{
-    grid-area:cue;display:block;margin:20px 0 0;text-align:center;
-    font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    grid-area:cue;display:block;margin:18px 0 0;text-align:center;
+    font-size:.64rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
     color:var(--blue-dd)
   }
   .hero-scroll::after{
-    content:"";display:block;width:1px;height:24px;margin:8px auto 0;
+    content:"";display:block;width:1px;height:22px;margin:8px auto 0;
     background:linear-gradient(180deg,var(--blue),rgba(0,176,240,0))
   }
   .scroll-cue{display:none}
@@ -569,12 +580,16 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
 
   /* --- build sequence: scene on top, copy below --- */
   .stage{
-    grid-template-columns:1fr;grid-template-rows:minmax(0,42svh) minmax(0,1fr);
-    align-items:stretch;gap:6px;padding-top:calc(var(--hdr-h) + 8px);padding-bottom:74px
+    grid-template-columns:1fr;grid-template-rows:minmax(0,33svh) minmax(0,1fr);
+    align-items:stretch;gap:8px;padding-top:calc(var(--hdr-h) + 6px);padding-bottom:62px
   }
   .scene-wrap{height:100%}
   .panels{height:100%}
-  .panel{justify-content:flex-start;padding-right:0}
+  /* the buttons are pushed to the bottom of the panel so they are always on
+     screen — they were being scrolled out of sight on tall descriptions */
+  .panel{justify-content:flex-start;padding-right:0;overflow:hidden}
+  .panel-name{font-size:.9rem;margin-bottom:.5rem}
+  .step-no{margin-bottom:.5rem}
   .panel h2{font-size:clamp(1.5rem,6.4vw,2.1rem)}
   /* long brochure paragraphs are trimmed here so the buttons stay in view —
      the full text is in the "Full specifications" dialog */
@@ -582,13 +597,13 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
     font-size:.92rem;max-width:none;
     display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5;overflow:hidden
   }
-  .panel-points{gap:.38rem;margin-bottom:1rem}
+  .panel-points{gap:.34rem;margin-bottom:.4rem}
   .panel-points li{font-size:.86rem}
   .plot-label,.scene-note{font-size:26px}
 
   /* rail becomes a horizontal strip at the bottom of the stage */
   .rail{
-    right:auto;left:50%;top:auto;bottom:16px;translate:-50% 0;
+    right:auto;left:50%;top:auto;bottom:12px;translate:-50% 0;
     background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:999px;padding:9px 14px
   }
   .rail ol{grid-auto-flow:column;gap:14px}
@@ -598,6 +613,19 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
   .spec-cols,.contact-grid,.foot-in{grid-template-columns:1fr}
   .spec-media img{height:170px}
   .foot-nav{grid-template-columns:repeat(2,1fr)}
+}
+
+/* phones only: anchor the panel buttons to the bottom so they never scroll away.
+   Tablets have room, so there the buttons follow the text normally. */
+@media (max-width:700px){
+  .panel-btns{margin-top:auto;padding-top:.5rem}
+}
+
+/* short laptops: keep the hero within one screen */
+@media (min-width:901px) and (max-height:780px){
+  .hero{padding-top:calc(var(--hdr-h) + 34px);padding-bottom:44px}
+  .hero-fig img{max-height:58svh}
+  h1{font-size:clamp(2.4rem,5vw,3.6rem)}
 }
 
 @media (max-width:620px){
@@ -621,9 +649,28 @@ tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
   .panel-desc{font-size:.88rem;-webkit-line-clamp:4}
 }
 
+/* ---- short screens: the panel must still show its buttons ---------------- */
+@media (max-width:900px) and (max-height:730px){
+  .stage{grid-template-rows:minmax(0,29svh) minmax(0,1fr);padding-bottom:58px}
+  .panel h2{font-size:1.38rem}
+  .panel-name{font-size:.85rem;margin-bottom:.4rem}
+  .panel-desc{-webkit-line-clamp:3;font-size:.85rem;margin-bottom:.7rem}
+  .panel-points li{font-size:.82rem}
+  .panel-points li::before{top:.45em}
+}
+@media (max-width:900px) and (max-height:640px){
+  /* nothing left to trim but the paragraph — it is one tap away in the dialog */
+  .stage{grid-template-rows:minmax(0,26svh) minmax(0,1fr)}
+  .panel-desc{display:none}
+  .panel-points li:nth-child(n+3){display:none}
+  .panel h2{font-size:1.25rem}
+  .hero-fig{min-height:190px}
+}
+
 /* short landscape phones: give the copy room */
 @media (max-height:560px) and (max-width:900px){
-  .stage{grid-template-rows:minmax(0,32svh) minmax(0,1fr)}
+  .stage{grid-template-rows:minmax(0,30svh) minmax(0,1fr)}
+  .hero-in{grid-template-areas:"head head" "copy fig" "chips chips" "cue cue"}
 }
 
 /* ==========================================================================

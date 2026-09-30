@@ -588,6 +588,7 @@ tbody tr:hover td{background:var(--bg)}
   /* --- header: menu becomes a full-height sheet --- */
   .burger{display:block}
   .hide-m{display:none}
+  .hdr-cta{margin-left:auto}       /* the nav leaves the row as a sheet, so push the buttons right */
   .nav{
     position:fixed;top:100%;left:0;right:0;height:calc(100svh - var(--hdr-h));margin:0;
     background:var(--bg);overflow-y:auto;padding:12px var(--gutter) 48px;

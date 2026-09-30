@@ -2,8 +2,9 @@
    Kay9 Hydro Tech Parking — "Services we offer" scroller
    The track is a native horizontal scroller with scroll-snap, so
    swiping and trackpads work on their own. This script adds:
-   arrows, dots, auto-scroll, and links such as #tower (header menu,
-   footer) that bring the page here and turn to that card.
+   arrows, the system tabs and counter, auto-scroll, and links such
+   as #tower (header menu, footer) that bring the page here and turn
+   to that card.
    ============================================================= */
 (function () {
   'use strict';
@@ -16,12 +17,14 @@
   if (!svc || !track) return;
 
   var cards = Array.prototype.slice.call(track.querySelectorAll('.svc-card'));
-  var dots  = Array.prototype.slice.call(document.querySelectorAll('.svc-dots button'));
-  var prev  = svc.querySelector('.svc-prev');
-  var next  = svc.querySelector('.svc-next');
+  var tabBar = document.getElementById('svcTabs');
+  var dots  = Array.prototype.slice.call(document.querySelectorAll('#svcTabs button'));
+  var prev  = document.querySelector('.svc-prev');
+  var next  = document.querySelector('.svc-next');
+  var count = document.getElementById('svcNow');
   var still = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  var active = 0;            // the card the dots show as current
+  var active = 0;            // the card the tabs show as current
   var target = null;         // the card we last asked to scroll to
   var timer = null, holdTimer = null;
   var hovering = false, onScreen = false, held = false;
@@ -48,8 +51,16 @@
     active = i;
     dots.forEach(function (d, n) {
       d.classList.toggle('is-on', n === i);
-      d.setAttribute('aria-current', n === i ? 'true' : 'false');
+      d.setAttribute('aria-pressed', n === i ? 'true' : 'false');
     });
+    cards.forEach(function (c, n) { c.classList.toggle('is-current', n === i); });
+    if (count) count.textContent = (i < 9 ? '0' : '') + (i + 1);
+    /* keep the chosen tab in view on narrow screens (scroll the tab bar only, not the page) */
+    var t = dots[i];
+    if (t && tabBar && tabBar.scrollWidth > tabBar.clientWidth) {
+      var left = t.offsetLeft - (tabBar.clientWidth - t.offsetWidth) / 2;
+      tabBar.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+    }
   }
 
   function goTo(i, instant) {
@@ -64,7 +75,7 @@
     else goTo(track.scrollLeft <= 4 ? cards.length - 1 : Math.max(first - 1, 0));
   }
 
-  /* after any scroll (swipe, arrow, auto), work out which dot to light */
+  /* after any scroll (swipe, arrow, auto), work out which tab to light */
   var settle;
   track.addEventListener('scroll', function () {
     clearTimeout(settle);

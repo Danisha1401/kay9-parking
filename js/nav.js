@@ -21,6 +21,38 @@
   onScrollHdr();
   window.addEventListener('scroll', onScrollHdr, { passive: true });
 
+  /* ---------- light / dark theme ----------
+     The head script applies a saved choice before first paint; this keeps the toggle,
+     its label and the browser's theme-color in sync, and follows the device setting
+     for visitors who have not picked one.                                            */
+  var root     = document.documentElement;
+  var themeBtn = document.getElementById('themeBtn');
+  var mqDark   = window.matchMedia('(prefers-color-scheme: dark)');
+  var metas    = document.querySelectorAll('meta[name="theme-color"]');
+
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    return t ? t === 'dark' : mqDark.matches;
+  }
+  function syncTheme() {
+    var dark = isDark();
+    root.classList.toggle('is-dark', dark);
+    if (themeBtn) themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    for (var i = 0; i < metas.length; i++) metas[i].setAttribute('content', dark ? '#111110' : '#faf9f5');
+  }
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      root.classList.add('theme-anim');                 // cross-fade colours for this one change
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('kay9-theme', next); } catch (e) {}
+      syncTheme();
+      setTimeout(function () { root.classList.remove('theme-anim'); }, 450);
+    });
+  }
+  mqDark.addEventListener('change', syncTheme);
+  syncTheme();
+
   /* ---------- mobile menu ---------- */
   function setMenu(open) {
     nav.classList.toggle('is-open', open);

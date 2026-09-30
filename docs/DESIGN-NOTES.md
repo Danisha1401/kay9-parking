@@ -12,19 +12,39 @@ assets/               logo SVGs, brochure PDF
 assets/img/           photographs and drawings taken from KAY9.pdf
 ```
 
-## Brand
+## Design system
 
-Taken from the company brochure (`KAY9.pdf`).
+All colours are CSS custom properties at the top of `css/style.css`. Every rule uses the
+tokens, so light and dark mode differ only in the token blocks.
 
-| Token | Value | Where it comes from |
-|---|---|---|
-| `--blue` | `#00B0F0` | the logo blue, sampled from the brochure artwork |
-| `--ink` | `#231f20` | brochure body text colour |
-| `--yellow` | `#f2c200` | the pallet yellow in the installation photographs |
-| headings | Georgia / Times serif | the brochure sets every heading in Times |
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `--bg` | `#faf9f5` warm paper | `#111110` | page background |
+| `--bg-2` | `#f3f1ea` parchment | `#171715` | Services band, footer, hovers |
+| `--surface` | `#ffffff` | `#1c1c1a` | cards, form, menus, dialogs |
+| `--ink` / `--ink-2` / `--muted` | `#141413` / `#3d3c38` / `#6b6a63` | `#f3f2ed` / `#cfcdc5` / `#9c9a91` | text, strongest to weakest |
+| `--line` / `--line-2` | `#e7e4db` / `#d6d2c6` | `#2a2a27` / `#3a3935` | hairlines, input borders |
+| `--brand` | `#00B0F0` | same | the logo blue — decoration only (dots, icons, progress bar) |
+| `--accent` | `#0a74b0` | `#4cc4f5` | the logo blue adjusted to pass contrast as text: labels, links, focus |
+| `--btn-bg` | near-black | off-white | primary buttons invert with the theme |
+| `--plate` | `#efede6` | `#e6e4dc` | behind product photos — stays light so the photos read in both themes |
 
-`assets/logo-mark.svg` and `assets/logo-wordmark.svg` are vector traces of the bitmap
-logos embedded in the PDF, so they stay sharp at any size and can be recoloured.
+- **Type:** Inter (headings 650 weight, tight negative tracking; body 17px) and JetBrains
+  Mono for technical labels (eyebrows, "System 01 / 06", table headers). Loaded from
+  Google Fonts; system fonts are the fallback.
+- **Shape:** buttons 10px radius (rectangles, not pills), cards 24px, pill shapes only for
+  the system tabs and the hero badge.
+- **Section rhythm:** hero (paper) → Services (parchment) → Why Kay9 (dark tile) →
+  Contact (paper) → footer (parchment).
+- **Motion:** one easing curve (`--ease`), 150–250ms for interface feedback, 800ms for
+  scroll reveals. Buttons press to 97%. Everything respects reduced-motion settings.
+
+### Light / dark mode
+
+The site follows the visitor's device setting. The sun/moon button in the header
+overrides it and the choice is remembered (`localStorage` key `kay9-theme`). A small
+script in `<head>` applies a saved choice before the page paints, so there is no flash
+of the wrong theme; `js/nav.js` handles the button.
 
 ## The hero illustration
 
@@ -48,12 +68,13 @@ reduced motion turned on.
 
 ## Services we offer
 
-One card per system in `.svc-track`, a native horizontal scroller with scroll-snap, so
-swiping works without JavaScript. `js/services.js` adds the arrows, dots and auto-scroll
-(5 s per card; it pauses on hover, focus or touch, and for 12 s after a visitor picks a
-card). Links to `#two-level`, `#three-level`, `#pit-stack`, `#puzzle`, `#tower` and
-`#bike` — the header dropdown and the footer — scroll the page here and turn to that
-card. Cards per view: 3 on desktop, 2 below 1100px, 1 below 620px.
+One large card per system (photo + write-up) in `.svc-track`, a native horizontal
+scroller with scroll-snap, so swiping works without JavaScript. `js/services.js` adds the
+system tabs, the "01 / 06" counter, the arrows and auto-scroll (5 s per card; it pauses
+on hover, focus or touch, and for 12 s after a visitor picks a card). The current card is
+full strength; the next one peeks in, dimmed. Links to `#two-level`, `#three-level`,
+`#pit-stack`, `#puzzle`, `#tower` and `#bike` — the header dropdown and the footer —
+scroll the page here and turn to that card.
 
 The "Full specifications" buttons open the `<dialog class="spec">` pop-ups at the end of
 `index.html`.

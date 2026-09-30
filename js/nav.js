@@ -1,5 +1,5 @@
 /* =============================================================
-   Kay9 Hydro Tech Parking — header, menus, dialogs, gallery
+   Kay9 Hydro Tech Parking — header, menus, dialogs, enquiry form
    ============================================================= */
 (function () {
   'use strict';
@@ -11,9 +11,12 @@
   var dropBtn  = document.querySelector('.drop-btn');
   var drop     = document.getElementById('drop-systems');
 
-  /* ---------- sticky header shadow ---------- */
+  /* ---------- sticky header shadow + page progress bar ---------- */
+  var bar = document.getElementById('hdrProgress');
   var onScrollHdr = function () {
     hdr.classList.toggle('is-stuck', window.scrollY > 12);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
   };
   onScrollHdr();
   window.addEventListener('scroll', onScrollHdr, { passive: true });
@@ -29,7 +32,7 @@
     setMenu(!nav.classList.contains('is-open'));
   });
 
-  /* ---------- systems dropdown ---------- */
+  /* ---------- services dropdown ---------- */
   drop.removeAttribute('hidden');           // animated with classes, not the hidden attribute
   var dropOpen = false;
   var hoverTimer;
@@ -77,8 +80,8 @@
   });
 
   /* ---------- active section in the header ---------- */
-  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link[href^="#"]'));
-  var watched = ['systems', 'why', 'projects', 'contact']
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link[href^="#"], .drop-btn'));
+  var watched = ['why', 'services', 'contact']
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
 
@@ -87,7 +90,8 @@
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         links.forEach(function (l) {
-          l.classList.toggle('is-active', l.getAttribute('href') === '#' + en.target.id);
+          var id = l.classList.contains('drop-btn') ? 'services' : l.getAttribute('href').slice(1);
+          l.classList.toggle('is-active', id === en.target.id);
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
@@ -143,52 +147,122 @@
     if (openDlg && e.target === openDlg) closeDialog(openDlg);
   });
 
-  /* ---------- gallery lightbox ---------- */
-  var shots  = Array.prototype.slice.call(document.querySelectorAll('.shot'));
-  var lb     = document.getElementById('lightbox');
-  var lbImg  = document.getElementById('lbImg');
-  var lbCap  = document.getElementById('lbCap');
-  var lbIdx  = 0;
-
-  function showShot(i) {
-    lbIdx = (i + shots.length) % shots.length;
-    var s = shots[lbIdx];
-    lbImg.src = s.dataset.src;
-    lbImg.alt = s.querySelector('img') ? s.querySelector('img').alt : '';
-    lbCap.textContent = s.dataset.cap || '';
-  }
-  shots.forEach(function (s, i) {
-    s.addEventListener('click', function () { showShot(i); openDialog(lb); });
-  });
-  if (lb) {
-    lb.querySelector('.lb-prev').addEventListener('click', function () { showShot(lbIdx - 1); });
-    lb.querySelector('.lb-next').addEventListener('click', function () { showShot(lbIdx + 1); });
-    document.addEventListener('keydown', function (e) {
-      if (!lb.open) return;
-      if (e.key === 'ArrowRight') showShot(lbIdx + 1);
-      if (e.key === 'ArrowLeft')  showShot(lbIdx - 1);
-    });
-  }
-
   /* ---------- enquiry form ----------
-     The form has no endpoint yet (pending client decision). Until an action URL is
-     set on the <form>, submissions are stopped here and the visitor is pointed at
-     the phone number instead — no silent failures.                                  */
+     Posts to FormSubmit (see the note above <form id="enquiry">). FormSubmit accepts
+     several file inputs but only one file per input, so on submit every chosen file
+     is moved into its own hidden input (attachment-1, attachment-2, …).            */
   var form = document.getElementById('enquiry');
   var note = document.getElementById('formNote');
   if (form) {
+    var MAX_BYTES = 10 * 1024 * 1024;       // FormSubmit's limit for all files together
+    var TYPES = ['dwg', 'dxf', 'pdf', 'jpg', 'jpeg', 'png', 'zip'];
+    var zone  = document.getElementById('dropZone');
+    var input = document.getElementById('f-files');
+    var list  = document.getElementById('fileList');
+    var files = [];
+    var canMove = typeof DataTransfer === 'function';
+
+    var fmtSize = function (b) {
+      return b < 1024 * 1024 ? Math.max(1, Math.round(b / 1024)) + ' KB' : (b / 1048576).toFixed(1) + ' MB';
+    };
+    var total = function () { return files.reduce(function (t, f) { return t + f.size; }, 0); };
+    var setNote = function (cls, msg) { note.className = 'form-note' + (cls ? ' ' + cls : ''); note.textContent = msg; };
+
+    var render = function () {
+      list.innerHTML = '';
+      files.forEach(function (f, i) {
+        var li = document.createElement('li');
+        var nm = document.createElement('span');
+        nm.className = 'file-name';
+        nm.textContent = f.name;
+        var sz = document.createElement('span');
+        sz.className = 'file-size';
+        sz.textContent = fmtSize(f.size);
+        var x = document.createElement('button');
+        x.type = 'button';
+        x.className = 'file-x';
+        x.setAttribute('aria-label', 'Remove ' + f.name);
+        x.innerHTML = '&times;';
+        x.addEventListener('click', function () { files.splice(i, 1); render(); });
+        li.appendChild(nm); li.appendChild(sz); li.appendChild(x);
+        list.appendChild(li);
+      });
+      zone.classList.toggle('has-files', files.length > 0);
+    };
+
+    var add = function (picked) {
+      var skipped = [];
+      Array.prototype.forEach.call(picked, function (f) {
+        var ext = (f.name.split('.').pop() || '').toLowerCase();
+        if (TYPES.indexOf(ext) < 0) { skipped.push(f.name + ' (file type not accepted)'); return; }
+        if (total() + f.size > MAX_BYTES) { skipped.push(f.name + ' (over the 10 MB total)'); return; }
+        var dup = files.some(function (g) { return g.name === f.name && g.size === f.size; });
+        if (!dup) files.push(f);
+      });
+      render();
+      if (skipped.length) setNote('warn', 'Not added: ' + skipped.join(', ') + '.');
+      else if (note.classList.contains('warn')) setNote('', '');
+    };
+
+    if (canMove) {
+      /* the visible input only collects files; they are listed and sent from `files` */
+      input.addEventListener('change', function () { add(input.files); input.value = ''; });
+      ['dragenter', 'dragover'].forEach(function (t) {
+        zone.addEventListener(t, function (e) { e.preventDefault(); zone.classList.add('is-over'); });
+      });
+      ['dragleave', 'dragend', 'drop'].forEach(function (t) {
+        zone.addEventListener(t, function () { zone.classList.remove('is-over'); });
+      });
+      zone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        if (e.dataTransfer && e.dataTransfer.files) add(e.dataTransfer.files);
+      });
+    }
+    /* without DataTransfer (very old browsers) the plain file input submits as it is */
+
     form.addEventListener('submit', function (e) {
       if (!form.checkValidity()) {
         e.preventDefault();
         form.reportValidity();
         return;
       }
-      if (form.dataset.demo === 'true') {
+      if (location.protocol === 'file:') {
         e.preventDefault();
-        note.className = 'form-note warn';
-        note.textContent = 'This form is not connected to an inbox yet. Please call +91 98679 32460 or email kay9hydrotechparking@gmail.com.';
+        setNote('warn', 'The form only sends once the site is online. Please call +91 98679 32460 or email kay9hydrotechparking@gmail.com.');
+        return;
       }
+      /* return to this page afterwards, with a flag so we can say thank you */
+      form.querySelector('[name="_next"]').value =
+        location.origin + location.pathname + '?sent=1#contact';
+
+      if (canMove) {
+        form.querySelectorAll('.file-carrier').forEach(function (el) { el.remove(); });
+        input.removeAttribute('name');
+        files.forEach(function (f, i) {
+          var dt = new DataTransfer();
+          dt.items.add(f);
+          var carrier = document.createElement('input');
+          carrier.type = 'file';
+          carrier.name = 'attachment-' + (i + 1);
+          carrier.className = 'file-carrier';
+          carrier.hidden = true;
+          carrier.files = dt.files;
+          form.appendChild(carrier);
+        });
+      }
+      form.querySelector('[type="submit"]').disabled = true;
+      setNote('', files.length ? 'Sending your enquiry and files…' : 'Sending your enquiry…');
     });
+
+    /* coming back from a page restored out of the cache: let the form be used again */
+    window.addEventListener('pageshow', function () {
+      form.querySelector('[type="submit"]').disabled = false;
+    });
+
+    if (/[?&]sent=1/.test(location.search)) {
+      setNote('ok', 'Thank you — your enquiry has been sent. We will be in touch soon.');
+      if (history.replaceState) history.replaceState(null, '', location.pathname + '#contact');
+    }
   }
 
   /* ---------- footer year ---------- */

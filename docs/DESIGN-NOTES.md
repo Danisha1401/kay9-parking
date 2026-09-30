@@ -5,11 +5,11 @@ Static site. No build step, no dependencies. Open `index.html` or serve the fold
 ```
 index.html            all markup, including the inline SVG scene and the spec dialogs
 css/style.css         tokens, layout, responsive rules
-js/nav.js             header, dropdown, mobile menu, dialogs, gallery lightbox, form
-js/scroll.js          the scroll-driven build sequence
+js/nav.js             header, dropdown, mobile menu, dialogs, enquiry form + file upload
+js/hero.js            the looping hero illustration
+js/services.js        the "Services we offer" scroller
 assets/               logo SVGs, brochure PDF
 assets/img/           photographs and drawings taken from KAY9.pdf
-.claude/serve.js      local preview server only — not part of the website
 ```
 
 ## Brand
@@ -26,10 +26,9 @@ Taken from the company brochure (`KAY9.pdf`).
 `assets/logo-mark.svg` and `assets/logo-wordmark.svg` are vector traces of the bitmap
 logos embedded in the PDF, so they stay sharp at any size and can be recoloured.
 
-## The build sequence
+## The hero illustration
 
-`.build-track` is seven viewports tall. `.stage` is pinned to the top of it, and each
-seventh of the scrolled distance is one step:
+The SVG scene in the hero is stepped through the systems on a timer by `js/hero.js`:
 
 | Step | System |
 |---|---|
@@ -41,15 +40,39 @@ seventh of the scrolled distance is one step:
 | 5 | Tower |
 | 6 | Bike Stack |
 
-`js/scroll.js` writes the current step to `data-step` on `.stage`, adds `.on` to the
-matching panel, and adds `.on` to every SVG group whose `data-from` / `data-to` range
-covers the step. To change what appears when, edit those two attributes in the markup —
-no JavaScript changes needed.
+Each SVG group whose `data-from` / `data-to` range covers the current step gets `.on`.
+The five slides (stack, pit, puzzle, tower, bike), their captions and how long each step
+is held are the `SLIDES` list at the top of `js/hero.js`. The animation pauses while it
+is off screen or the tab is in the background, and holds still for visitors who have
+reduced motion turned on.
 
-The header menu and the dot rail link to `<span class="step-anchor">` elements, which
-`layout()` positions at the centre of each step band, so a link lands on the right step.
+## Services we offer
 
-Below 900px the stage becomes scene-on-top / copy-below; everything else is unchanged.
+One card per system in `.svc-track`, a native horizontal scroller with scroll-snap, so
+swiping works without JavaScript. `js/services.js` adds the arrows, dots and auto-scroll
+(5 s per card; it pauses on hover, focus or touch, and for 12 s after a visitor picks a
+card). Links to `#two-level`, `#three-level`, `#pit-stack`, `#puzzle`, `#tower` and
+`#bike` — the header dropdown and the footer — scroll the page here and turn to that
+card. Cards per view: 3 on desktop, 2 below 1100px, 1 below 620px.
+
+The "Full specifications" buttons open the `<dialog class="spec">` pop-ups at the end of
+`index.html`.
+
+## Enquiry form
+
+Posts to FormSubmit (`https://formsubmit.co/kay9hydrotechparking@gmail.com`) with
+file uploads. Points to know:
+
+- **Activation.** The first submission from the live site sends a confirmation email to
+  kay9hydrotechparking@gmail.com. Nothing is delivered until the link in it is clicked.
+- **Attachments.** DWG, DXF, PDF, JPG, PNG or ZIP, optional, 10 MB in total per enquiry
+  (FormSubmit's limit). FormSubmit takes one file per input, so `js/nav.js` moves each
+  chosen file into its own hidden input (`attachment-1`, `attachment-2`, …) on submit.
+- **After sending** FormSubmit returns the visitor to the page with `?sent=1`, which
+  shows a thank-you message under the form.
+- The form only works when the site is served over http(s); opened as a local file it
+  shows the phone number and email instead.
+- To send to a different inbox, change the address in the form's `action`.
 
 ## Content rules
 
@@ -60,11 +83,7 @@ not contain it.
 
 ## Still to be supplied by the client
 
-1. **Stats strip** — year established, systems installed, cities served. Marked
-   `[CLIENT TO CONFIRM]` in the markup.
-2. **Projects** — real project names, locations and a client list, plus any further
-   site photographs for the gallery.
-3. **Enquiry form endpoint** — the form validates and is styled, but has no action URL.
-   `js/nav.js` blocks submission and shows the phone number instead. To connect it:
-   set `action="<endpoint>"` and `method="post"` on `<form id="enquiry">`, then delete
-   its `data-demo="true"` attribute.
+1. **Projects / client list** — the old Projects gallery and the stats strip (year
+   established, systems installed, cities served) were removed at the client's request.
+   The installation photographs are still in `assets/img/install-*.jpg` if a gallery is
+   wanted again.

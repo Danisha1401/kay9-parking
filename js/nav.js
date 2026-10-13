@@ -27,12 +27,10 @@
      for visitors who have not picked one.                                            */
   var root     = document.documentElement;
   var themeBtn = document.getElementById('themeBtn');
-  var mqDark   = window.matchMedia('(prefers-color-scheme: dark)');
   var metas    = document.querySelectorAll('meta[name="theme-color"]');
 
   function isDark() {
-    var t = root.getAttribute('data-theme');
-    return t ? t === 'dark' : mqDark.matches;
+    return root.getAttribute('data-theme') !== 'light';   // dark is the default
   }
   function syncTheme() {
     var dark = isDark();
@@ -50,7 +48,6 @@
       setTimeout(function () { root.classList.remove('theme-anim'); }, 450);
     });
   }
-  mqDark.addEventListener('change', syncTheme);
   syncTheme();
 
   /* ---------- mobile menu ---------- */

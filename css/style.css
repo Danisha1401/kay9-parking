@@ -292,7 +292,14 @@ p{margin:0 0 1em}
   position:relative;border-radius:var(--r-xl);overflow:hidden;background:var(--surface);
   border:1px solid var(--line);box-shadow:var(--shadow-lg)
 }
-.scene-wrap{position:relative;aspect-ratio:1200/780}
+.scene-wrap{position:relative;aspect-ratio:1200/780;touch-action:pan-y}
+.anim-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(17,17,16,.55);color:#fff;display:grid;place-items:center;backdrop-filter:blur(6px);
+  transition:background-color var(--fast),transform var(--fast)}
+.anim-nav:hover{background:rgba(17,17,16,.85)}
+.anim-nav:active{transform:translateY(-50%) scale(.94)}
+.anim-nav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.anim-prev{left:12px}.anim-next{right:12px}
 .scene{width:100%;height:100%;display:block;overflow:hidden}
 .sky-a{stop-color:var(--scene-sky-a)}
 .sky-b{stop-color:var(--scene-sky-b)}
@@ -313,57 +320,54 @@ p{margin:0 0 1em}
 .anim.is-paused .anim-dots button.is-on i{animation-play-state:paused}
 @keyframes dotFill{to{transform:scaleX(1)}}
 
-/* ---------- SVG scene parts (stepped by js/hero.js) ---------- */
+/* ---------- SVG scene parts (moved by js/hero.js) ---------- */
 .ln-ground{stroke:var(--line-2);stroke-width:2}
-.plot-box{fill:none;stroke:var(--brand);stroke-width:2;stroke-dasharray:10 8;opacity:.8}
-.plot-label{font-family:var(--mono);font-size:18px;font-weight:500;letter-spacing:.2em;fill:var(--accent);text-anchor:middle}
-.scene-note{font-family:var(--font);font-size:19px;fill:var(--muted);text-anchor:middle}
-.post{fill:url(#gSteel);transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);transition:transform .85s var(--ease)}
-.post-rear{fill:#8fa3b1;opacity:.75}
-.anim[data-step="1"] .post{transform:scaleY(.5)}
-.anim[data-step="2"] .post,.anim[data-step="3"] .post{transform:scaleY(1)}
+.scene-note{font-family:var(--font);font-size:25px;fill:var(--muted);text-anchor:middle}
+.scn{opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility 0s .5s}
+.scn.on{opacity:1;visibility:visible;transition:opacity .5s var(--ease)}
+.post{fill:url(#gSteel)}
+.post-rear{fill:#8fa3b1;opacity:.6}
+.beam{fill:#93a6b5}
 .pal{fill:#f2c200}
 .pal-top{fill:#ffe06a}
 .pal-lift{fill:#ffd23d}
-.pal-arm{stroke:#9fb2bf;stroke-width:5;stroke-linecap:round}
+.pal-ramp{fill:#d9ad00}
+.carriage{fill:#6d8090}
+.bracket{fill:#7f93a3}
+.link{stroke:#9fb2bf;stroke-width:6;fill:none}
+.lift-guide{stroke:var(--brand);stroke-width:3;fill:none;opacity:.7}
 .frame{fill:none;stroke:#93a6b5;stroke-width:5}
 .shaft{fill:var(--accent-soft);stroke:var(--brand);stroke-width:2;stroke-dasharray:8 7}
-.rails line{stroke:#b9c9d4;stroke-width:2}
+.tw-slots path,.plan-bays path{stroke:#b9c9d4;stroke-width:3;fill:none}
+.rail{stroke:#b9c9d4;stroke-width:3}
+.pit{fill:#33424d}
+.pit-lip{fill:#1e2a33}
 .box{fill:#e8eff4;stroke:#9fb2bf;stroke-width:2}
 .box-led{fill:var(--brand)}
 .box-key{fill:#b6c6d1}
-.box-wire{stroke:#b6c6d1;stroke-width:3;fill:none}
-.bframe{fill:none;stroke:#4c5c66;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
-/* car / bike colours: custom properties inherit into <use> shadow trees */
+.plan-floor{fill:var(--scene-gnd-a);stroke:var(--line-2);stroke-width:2}
+.plan-aisle{fill:var(--scene-gnd-b)}
+.plan-road{stroke:var(--line-2);stroke-width:3;stroke-dasharray:14 10;fill:none}
+.plan-rail{stroke:#9fb2bf;stroke-width:3}
+.plan-lift{fill:var(--accent-soft);stroke:var(--brand);stroke-width:2;stroke-dasharray:8 7}
+.plan-label{font-family:var(--mono);font-size:15px;letter-spacing:.14em;fill:var(--accent)}
+.plan-tt{fill:none;stroke:#9fb2bf;stroke-width:3}
+.plan-tt-mark{stroke:var(--brand);stroke-width:4}
+.plan-free{fill:none;stroke:var(--brand);stroke-width:2;stroke-dasharray:6 6;opacity:.8}
+.shuttle{fill:#ffe06a;fill-opacity:.55;stroke:#d9ad00;stroke-width:3}
+.shuttle-comb{stroke:#d9ad00;stroke-width:4}
+/* car colours: custom properties inherit into <use> shadow trees */
 .cbody{fill:var(--carFill,#cfd8de);stroke:#8ea0ac;stroke-width:1.5}
 .cglass{fill:#8fb8ce;opacity:.92}
+.croof{fill:var(--carFill,#cfd8de);stroke:#8ea0ac;stroke-width:1.5;filter:brightness(.93)}
 .ctyre{fill:#2b3238}
 .chub{fill:#aab6bd}
+.clight{fill:#d4473f}
+.cplate{fill:#f6f6f2;stroke:#8ea0ac}
 .c-red{--carFill:#c8362f}
 .c-blue{--carFill:#2f4f80}
 .c-white{--carFill:#f4f7f9}
 .c-slate{--carFill:#b4bfc7}
-
-.scene [data-from]{opacity:0;transition:opacity .55s var(--ease),transform .85s var(--ease)}
-.scene [data-from].on{opacity:1;transform:none}
-.scene .pallet{transform:translateX(-620px)}
-.scene .car-slot,.scene .car-ground,.scene .car-in-pit{transform:translateX(-760px)}
-.scene .pit{transform-box:fill-box;transform-origin:top;transform:scaleY(.05)}
-.scene .ctrl{transform:translateX(60px)}
-.scene .posts-rear{transform:translateY(30px)}
-.scene .g-puzzle,.scene .g-tower,.scene .g-bike{transform-box:fill-box;transform-origin:bottom center;transform:scale(.93)}
-.scene .plot{transform:none}
-.g-puzzle.on .pz-shift{animation:pzShift 5.5s var(--ease) infinite}
-.g-puzzle.on .pz-shift2{animation:pzShift 5.5s var(--ease) 1.2s infinite}
-.g-puzzle.on .pz-lift{animation:pzLift 5.5s var(--ease) 2.4s infinite}
-@keyframes pzShift{0%,12%{transform:translateX(0)}42%,62%{transform:translateX(230px)}92%,100%{transform:translateX(0)}}
-@keyframes pzLift{0%,14%{transform:translateY(0)}44%,64%{transform:translateY(140px)}94%,100%{transform:translateY(0)}}
-.g-tower.on .tw-lift{animation:twLift 7s var(--ease) infinite}
-@keyframes twLift{0%,8%{transform:translateY(0)}40%,55%{transform:translateY(-340px)}92%,100%{transform:translateY(0)}}
-.g-bike.on .bk-row:nth-child(2){animation:bkIn .9s var(--ease) both}
-.g-bike.on .bk-row:nth-child(3){animation:bkIn .9s var(--ease) .18s both}
-.g-bike.on .bk-row:nth-child(4){animation:bkIn .9s var(--ease) .34s both}
-@keyframes bkIn{from{opacity:0;transform:translateX(-90px)}to{opacity:1;transform:none}}
 
 /* ==========================================================================
    SERVICES — one large card per system, in a snapping scroller
@@ -667,7 +671,7 @@ tbody tr:hover td{background:var(--bg)}
   .scroll-cue{display:none}
   .hero-bg::before{background-size:40px 40px;
     -webkit-mask-image:radial-gradient(90% 60% at 50% 70%,#000 0%,transparent 75%);mask-image:radial-gradient(90% 60% at 50% 70%,#000 0%,transparent 75%)}
-  .plot-label,.scene-note{font-size:26px}
+  .scene-note{font-size:26px}
 
   /* --- services: photo on top --- */
   .svc-card{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr}
@@ -721,7 +725,7 @@ tbody tr:hover td{background:var(--bg)}
 }
 
 @media print{
-  .hdr,.wa,.scroll-cue,.form,.svc-ctrl,.svc-tabs,.anim-dots{display:none}
+  .hdr,.wa,.scroll-cue,.form,.svc-ctrl,.svc-tabs,.anim-dots,.anim-nav{display:none}
   .svc-track{display:grid;grid-template-columns:1fr;overflow:visible}
   .svc-card:not(.is-current){opacity:1}
 }

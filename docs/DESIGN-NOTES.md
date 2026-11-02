@@ -48,23 +48,25 @@ of the wrong theme; `js/nav.js` handles the button.
 
 ## The hero illustration
 
-The SVG scene in the hero is stepped through the systems on a timer by `js/hero.js`:
+The SVG scene in the hero has one group (`.scn`) per system, in the same order as the
+Services cards. `js/hero.js` plays each one as a short timeline that moves the parts the
+way the real machine moves them (worked out from the installation videos in `video/`):
 
-| Step | System |
-|---|---|
-| 0 | empty plot |
-| 1 | Two Level Two Post Stack |
-| 2 | Three Level Stack |
-| 3 | Four Post Pit Stack |
-| 4 | Puzzle |
-| 5 | Tower |
-| 6 | Bike Stack |
+| Slide | System | What moves |
+|---|---|---|
+| 1 | Four Pole Stack | car drives on, platform rises between four posts, second car parks below |
+| 2 | Horizontal (Shuttle) | plan view: car enters the lift, turntable turns it, lift lowers it, shuttle carries it along the aisle and pushes it into a bay |
+| 3 | Puzzle | ground pallet slides sideways into the spare space, the pallet above drops into the gap, car drives out |
+| 4 | Cantilever | post on one side only; platform lifts a car, second car drives in underneath |
+| 5 | Three Level Stack | dependent: ground car leaves, then level 1 comes down and its car leaves |
+| 6 | Tower | car enters the lift at the base, lift climbs the central shaft, pallet slides into a free side slot |
+| 7 | Pit Stack | platforms linked: lift up to load the lower platform, then both drop so one car sits in the pit |
 
-Each SVG group whose `data-from` / `data-to` range covers the current step gets `.on`.
-The five slides (stack, pit, puzzle, tower, bike), their captions and how long each step
-is held are the `SLIDES` list at the top of `js/hero.js`. The animation pauses while it
-is off screen or the tab is in the background, and holds still for visitors who have
-reduced motion turned on.
+Each slide in the `SLIDES` list is `{ scene, name, line, dur, tracks }`. `tracks` maps an
+element id to keyframes for `x`, `y` (translate), `r` (rotate), `s` (scale) and `o`
+(opacity) as `[[ms, value], ...]`; values ease in and out between keys. The animation
+pauses while it is off screen or the tab is in the background, and shows each system's
+finished state for visitors who have reduced motion turned on.
 
 ## Services we offer
 

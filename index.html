@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="css/style.css?v=7">
+<link rel="stylesheet" href="css/style.css?v=7c">
 <meta property="og:title" content="Kay9 Hydro Tech Parking — Automatic Car Parking Systems">
 <meta property="og:description" content="Hydraulic and PLC-controlled parking systems that multiply capacity on the same footprint.">
 <meta property="og:image" content="assets/img/install-04.jpg">
@@ -47,11 +47,11 @@
             <div class="drop-in">
               <p class="drop-head">Car parking systems</p>
               <a class="drop-item" href="#four-pole">
-                <img src="img/kay9-four-pole-04.jpg" alt="" width="72" height="52" loading="lazy" class="is-photo">
+                <img src="img/kay9-four-pole-05.jpg" alt="" width="72" height="52" loading="lazy" class="is-photo">
                 <span><strong>Four Pole Stack</strong><em>Specs on enquiry</em></span>
               </a>
               <a class="drop-item" href="#horizontal">
-                <img src="video/horizontal-v02.jpg" alt="" width="72" height="52" loading="lazy" class="is-photo">
+                <img src="video/horizontal-v01.jpg" alt="" width="72" height="52" loading="lazy" class="is-photo">
                 <span><strong>Horizontal (Shuttle Type Back-To-Back)</strong><em>Specs on enquiry</em></span>
               </a>
               <a class="drop-item" href="#puzzle">
@@ -71,7 +71,7 @@
                 <span><strong>Tower</strong><em>Smallest footprint · PLC</em></span>
               </a>
               <a class="drop-item" href="#pit-stack">
-                <img src="video/pit-stack-v01.jpg" alt="" width="72" height="52" loading="lazy" class="is-photo">
+                <img src="video/pit-stack-v02.jpg" alt="" width="72" height="52" loading="lazy" class="is-photo">
                 <span><strong>Two/Three Level Pit Stack</strong><em>Pit + ground + upper level</em></span>
               </a>
             </div>
@@ -123,11 +123,11 @@
 
     <!-- Looping illustration. js/hero.js steps the scene through the systems;
          each slide's name, line and timing are listed there. -->
-    <figure class="hero-fig anim reveal" id="anim" data-step="1" style="--d:.1s">
+    <figure class="hero-fig anim reveal" id="anim" style="--d:.1s">
       <div class="scene-wrap">
           <svg class="scene" viewBox="0 0 1200 780" role="img" aria-labelledby="sceneTitle sceneDesc" preserveAspectRatio="xMidYMax meet">
             <title id="sceneTitle">Animated illustration of Kay9 parking systems</title>
-            <desc id="sceneDesc">A looping illustration that builds each Kay9 system in turn: stack, pit stack, puzzle, tower and bike parking. Full written specifications are in the Services section.</desc>
+            <desc id="sceneDesc">A looping illustration that shows how each Kay9 system moves cars: four pole stack, horizontal shuttle, puzzle, cantilever, three level stack, tower and pit stack. Full written specifications are in the Services section.</desc>
 
             <defs>
               <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1">
@@ -141,177 +141,187 @@
                 <stop offset="0" class="gnd-a"/><stop offset="1" class="gnd-b"/>
               </linearGradient>
 
+              <!-- side view, 200 x 74 -->
               <symbol id="sym-car" viewBox="0 0 200 74">
                 <path class="cbody" d="M6 62 L6 48 C6 42 10 38 18 36 L54 29 C66 17 80 11 102 11 C126 11 144 17 156 29 L184 36 C191 38 194 42 194 48 L194 62 Z"/>
                 <path class="cglass" d="M70 29 C80 20 90 16 101 16 L101 29 Z M107 16 C119 17 132 21 143 29 L107 29 Z"/>
-                <circle class="ctyre" cx="52" cy="62" r="13"/><circle class="ctyre" cx="152" cy="62" r="13"/>
+                <circle class="ctyre" cx="52" cy="62" r="12"/><circle class="ctyre" cx="152" cy="62" r="12"/>
                 <circle class="chub" cx="52" cy="62" r="5"/><circle class="chub" cx="152" cy="62" r="5"/>
               </symbol>
-
-              <symbol id="sym-bike" viewBox="0 0 120 70">
-                <circle class="ctyre" cx="22" cy="50" r="17"/><circle class="ctyre" cx="97" cy="50" r="17"/>
-                <circle class="chub" cx="22" cy="50" r="5"/><circle class="chub" cx="97" cy="50" r="5"/>
-                <path class="bframe" d="M22 50 L47 26 L74 26 L97 50 M47 26 L62 50 M74 26 L86 14 M34 22 L54 22"/>
-                <path class="cbody" d="M40 24 C48 14 66 12 78 18 L86 26 L52 30 Z"/>
+              <!-- seen from behind, 180 x 120 -->
+              <symbol id="sym-car-rear" viewBox="0 0 180 120">
+                <rect class="ctyre" x="16" y="88" width="28" height="32" rx="6"/><rect class="ctyre" x="136" y="88" width="28" height="32" rx="6"/>
+                <path class="cbody" d="M30 56 L46 18 Q50 10 60 10 L120 10 Q130 10 134 18 L150 56 Z"/>
+                <path class="cglass" d="M44 52 L55 23 Q57 18 63 18 L117 18 Q123 18 125 23 L136 52 Z"/>
+                <path class="cbody" d="M8 100 L8 68 Q8 56 22 54 L158 54 Q172 56 172 68 L172 100 Q172 106 165 106 L15 106 Q8 106 8 100 Z"/>
+                <rect class="clight" x="14" y="64" width="30" height="11" rx="3"/><rect class="clight" x="136" y="64" width="30" height="11" rx="3"/>
+                <rect class="cplate" x="70" y="78" width="40" height="13" rx="2"/>
+              </symbol>
+              <!-- seen from above, nose up, 90 x 180 -->
+              <symbol id="sym-car-top" viewBox="0 0 90 180">
+                <rect class="cbody" x="4" y="4" width="82" height="172" rx="24"/>
+                <path class="cglass" d="M16 58 Q45 44 74 58 L68 80 Q45 72 22 80 Z"/>
+                <rect class="croof" x="20" y="82" width="50" height="50" rx="8"/>
+                <path class="cglass" d="M22 136 Q45 142 68 136 L72 152 Q45 160 18 152 Z"/>
               </symbol>
             </defs>
 
             <rect x="0" y="0" width="1200" height="780" fill="url(#gSky)"/>
-
-            <!-- ground -->
             <g class="g-ground">
               <rect x="0" y="620" width="1200" height="160" fill="url(#gGround)"/>
               <line x1="0" y1="620" x2="1200" y2="620" class="ln-ground"/>
-              <g class="plot" data-from="0" data-to="0">
-                <rect x="250" y="560" width="700" height="60" class="plot-box"/>
-                <text x="600" y="598" class="plot-label">YOUR FOOTPRINT</text>
-              </g>
             </g>
 
-            <!-- ============ STACK SYSTEMS (steps 1-3) ============ -->
-            <g class="g-stack" data-from="1" data-to="3">
-
-              <!-- pit (step 3) -->
-              <g class="pit" data-from="3">
-                <rect x="330" y="620" width="560" height="150" fill="#2b3a45"/>
-                <rect x="330" y="620" width="560" height="12" fill="#1e2a33"/>
-                <g class="pallet pit-pallet" data-from="3" style="transition-delay:.15s">
-                  <rect x="340" y="742" width="540" height="12" class="pal"/>
-                  <rect x="340" y="742" width="540" height="4" class="pal-top"/>
-                </g>
-                <g class="car-in-pit" data-from="3" style="transition-delay:.3s">
-                  <use href="#sym-car" x="450" y="639" width="300" height="111" class="c-slate"/>
-                </g>
+            <!-- ============ 1 · FOUR POLE STACK (side view) ============ -->
+            <g class="scn" id="sc-four">
+              <text x="600" y="52" class="scene-note">Four posts · platform lifts one car · a second car parks below</text>
+              <rect x="356" y="210" width="12" height="410" class="post-rear"/>
+              <rect x="832" y="210" width="12" height="410" class="post-rear"/>
+              <rect x="330" y="200" width="540" height="10" class="beam"/>
+              <rect x="330" y="200" width="20" height="420" class="post"/>
+              <rect x="850" y="200" width="20" height="420" class="post"/>
+              <g class="ctrl"><rect x="890" y="540" width="44" height="64" rx="6" class="box"/><circle cx="912" cy="560" r="6" class="box-led"/><rect x="901" y="576" width="22" height="5" rx="2" class="box-key"/></g>
+              <g id="fp-car-b"><use href="#sym-car" x="-130" y="-96" width="260" height="96" class="c-blue"/></g>
+              <g id="fp-plat">
+                <rect x="350" y="0" width="500" height="14" class="pal"/><rect x="350" y="0" width="500" height="4" class="pal-top"/>
+                <path d="M350 0 L304 14 L350 14 Z M850 0 L896 14 L850 14 Z" class="pal-ramp"/>
               </g>
-
-              <!-- rear posts (four post, step 2+) -->
-              <g class="posts-rear" data-from="2">
-                <rect x="296" y="190" width="14" height="430" class="post post-rear"/>
-                <rect x="884" y="190" width="14" height="430" class="post post-rear"/>
-              </g>
-              <!-- front posts -->
-              <rect x="330" y="190" width="18" height="430" class="post"/>
-              <rect x="872" y="190" width="18" height="430" class="post"/>
-
-              <!-- level 2 platform (step 2+) -->
-              <g class="pallet" data-from="2">
-                <rect x="318" y="250" width="554" height="14" class="pal"/>
-                <rect x="318" y="250" width="554" height="4" class="pal-top"/>
-                <path d="M318 264 L360 288 M872 264 L830 288" class="pal-arm"/>
-              </g>
-              <!-- level 1 platform (step 1+) -->
-              <g class="pallet" data-from="1">
-                <rect x="318" y="430" width="554" height="14" class="pal"/>
-                <rect x="318" y="430" width="554" height="4" class="pal-top"/>
-                <path d="M318 444 L360 468 M872 444 L830 468" class="pal-arm"/>
-              </g>
-
-              <!-- cars -->
-              <g class="car-slot" data-from="2" style="transition-delay:.35s">
-                <use href="#sym-car" x="450" y="139" width="300" height="111" class="c-red"/>
-              </g>
-              <g class="car-slot" data-from="1" style="transition-delay:.45s">
-                <use href="#sym-car" x="450" y="319" width="300" height="111" class="c-white"/>
-              </g>
-              <g class="car-ground" data-from="1" style="transition-delay:.2s">
-                <use href="#sym-car" x="450" y="509" width="300" height="111" class="c-blue"/>
-              </g>
-
-              <!-- control box -->
-              <g class="ctrl" data-from="1" style="transition-delay:.6s">
-                <rect x="930" y="470" width="46" height="66" rx="6" class="box"/>
-                <circle cx="953" cy="492" r="6" class="box-led"/>
-                <rect x="941" y="508" width="24" height="5" rx="2" class="box-key"/>
-                <rect x="941" y="518" width="24" height="5" rx="2" class="box-key"/>
-                <path d="M930 500 L890 500" class="box-wire"/>
-              </g>
+              <g id="fp-car-a"><use href="#sym-car" x="-130" y="-96" width="260" height="96" class="c-red"/></g>
             </g>
 
-            <!-- ============ PUZZLE (step 4) ============ -->
-            <g class="g-puzzle" data-from="4" data-to="4">
-              <rect x="150" y="196" width="900" height="424" class="frame"/>
-              <g class="rails">
-                <line x1="150" y1="336" x2="1050" y2="336"/>
-                <line x1="150" y1="476" x2="1050" y2="476"/>
-                <line x1="380" y1="196" x2="380" y2="620"/>
-                <line x1="610" y1="196" x2="610" y2="620"/>
-                <line x1="840" y1="196" x2="840" y2="620"/>
+            <!-- ============ 2 · HORIZONTAL SHUTTLE (plan view) ============ -->
+            <g class="scn" id="sc-horiz">
+              <text x="600" y="44" class="scene-note">Plan view · lift with turntable · shuttle serves bays on both sides</text>
+              <rect x="110" y="70" width="990" height="640" rx="10" class="plan-floor"/>
+              <rect x="110" y="290" width="990" height="200" class="plan-aisle"/>
+              <path d="M0 330 H110 M0 450 H110" class="plan-road"/>
+              <line x1="340" y1="336" x2="1090" y2="336" class="plan-rail"/><line x1="340" y1="444" x2="1090" y2="444" class="plan-rail"/>
+              <g class="plan-bays">
+                <path d="M345 90 V290 M460 90 V290 M575 90 V290 M690 90 V290 M805 90 V290 M920 90 V290 M1035 90 V290"/>
+                <path d="M345 490 V690 M460 490 V690 M575 490 V690 M690 490 V690 M805 490 V690 M920 490 V690 M1035 490 V690"/>
               </g>
-              <!-- top row: up-down movers -->
-              <g class="pz-cell"><rect x="166" y="300" width="198" height="10" class="pal"/><use href="#sym-car" x="172" y="215" width="186" height="69" class="c-white"/></g>
-              <g class="pz-cell"><rect x="396" y="300" width="198" height="10" class="pal"/><use href="#sym-car" x="402" y="215" width="186" height="69" class="c-slate"/></g>
-              <g class="pz-cell pz-lift"><rect x="626" y="300" width="198" height="10" class="pal"/><use href="#sym-car" x="632" y="215" width="186" height="69" class="c-red"/></g>
-              <g class="pz-cell"><rect x="856" y="300" width="198" height="10" class="pal"/><use href="#sym-car" x="862" y="215" width="186" height="69" class="c-blue"/></g>
-              <!-- middle row: one empty slot -->
-              <g class="pz-cell"><rect x="166" y="440" width="198" height="10" class="pal"/><use href="#sym-car" x="172" y="355" width="186" height="69" class="c-blue"/></g>
-              <g class="pz-cell pz-shift"><rect x="396" y="440" width="198" height="10" class="pal"/><use href="#sym-car" x="402" y="355" width="186" height="69" class="c-white"/></g>
-              <g class="pz-cell"><rect x="856" y="440" width="198" height="10" class="pal"/><use href="#sym-car" x="862" y="355" width="186" height="69" class="c-slate"/></g>
-              <!-- ground row -->
-              <g class="pz-cell"><use href="#sym-car" x="172" y="548" width="186" height="69" class="c-slate"/></g>
-              <g class="pz-cell pz-shift2"><use href="#sym-car" x="402" y="548" width="186" height="69" class="c-red"/></g>
-              <g class="pz-cell"><use href="#sym-car" x="862" y="548" width="186" height="69" class="c-white"/></g>
-              <text x="600" y="660" class="scene-note">PLC control · pallets shift sideways and up · max. collection time 90s</text>
+              <g class="plan-cars">
+                <use href="#sym-car-top" x="362" y="104" width="80" height="172" class="c-white"/>
+                <use href="#sym-car-top" x="477" y="104" width="80" height="172" class="c-slate"/>
+                <use href="#sym-car-top" x="592" y="104" width="80" height="172" class="c-blue"/>
+                <use href="#sym-car-top" x="822" y="104" width="80" height="172" class="c-white"/>
+                <use href="#sym-car-top" x="937" y="104" width="80" height="172" class="c-slate"/>
+                <use href="#sym-car-top" x="362" y="504" width="80" height="172" class="c-slate"/>
+                <use href="#sym-car-top" x="477" y="504" width="80" height="172" class="c-red"/>
+                <use href="#sym-car-top" x="592" y="504" width="80" height="172" class="c-white"/>
+                <use href="#sym-car-top" x="707" y="504" width="80" height="172" class="c-blue"/>
+                <use href="#sym-car-top" x="937" y="504" width="80" height="172" class="c-white"/>
+              </g>
+              <rect x="720" y="100" width="54" height="180" rx="6" class="plan-free"/>
+              <rect x="120" y="290" width="210" height="200" class="plan-lift"/>
+              <text x="134" y="312" class="plan-label">LIFT</text>
+              <g id="hz-tt" transform="translate(225 390)"><circle r="94" class="plan-tt"/><path d="M0 -94 V-74 M0 94 V74" class="plan-tt-mark"/></g>
+              <g id="hz-shuttle"><rect x="-54" y="-98" width="108" height="196" rx="6" class="shuttle"/><path d="M-40 -80 H40 M-40 80 H40" class="shuttle-comb"/></g>
+              <g id="hz-car"><use href="#sym-car-top" x="-40" y="-86" width="80" height="172" class="c-red"/></g>
             </g>
 
-            <!-- ============ TOWER (step 5) ============ -->
-            <g class="g-tower" data-from="5" data-to="5">
-              <rect x="420" y="40" width="360" height="580" class="frame"/>
-              <rect x="552" y="40" width="96" height="580" class="shaft"/>
-              <g class="tw-levels">
-                <g class="tw-row"><rect x="432" y="120" width="112" height="8" class="pal"/><use href="#sym-car" x="434" y="76" width="108" height="40" class="c-white"/>
-                                   <rect x="656" y="120" width="112" height="8" class="pal"/><use href="#sym-car" x="658" y="76" width="108" height="40" class="c-red"/></g>
-                <g class="tw-row"><rect x="432" y="216" width="112" height="8" class="pal"/><use href="#sym-car" x="434" y="172" width="108" height="40" class="c-slate"/>
-                                   <rect x="656" y="216" width="112" height="8" class="pal"/><use href="#sym-car" x="658" y="172" width="108" height="40" class="c-blue"/></g>
-                <g class="tw-row"><rect x="432" y="312" width="112" height="8" class="pal"/><use href="#sym-car" x="434" y="268" width="108" height="40" class="c-blue"/>
-                                   <rect x="656" y="312" width="112" height="8" class="pal"/><use href="#sym-car" x="658" y="268" width="108" height="40" class="c-white"/></g>
-                <g class="tw-row"><rect x="432" y="408" width="112" height="8" class="pal"/><use href="#sym-car" x="434" y="364" width="108" height="40" class="c-red"/>
-                                   <rect x="656" y="408" width="112" height="8" class="pal"/><use href="#sym-car" x="658" y="364" width="108" height="40" class="c-slate"/></g>
-                <g class="tw-row"><rect x="432" y="504" width="112" height="8" class="pal"/><use href="#sym-car" x="434" y="460" width="108" height="40" class="c-slate"/>
-                                   <rect x="656" y="504" width="112" height="8" class="pal"/><use href="#sym-car" x="658" y="460" width="108" height="40" class="c-white"/></g>
-              </g>
-              <g class="tw-lift">
-                <rect x="556" y="556" width="88" height="10" class="pal pal-lift"/>
-                <use href="#sym-car" x="558" y="512" width="84" height="31" class="c-red"/>
-              </g>
-              <text x="600" y="660" class="scene-note">Lifting channel in the middle · pallets drawn to either side by mechanical hands</text>
+            <!-- ============ 3 · PUZZLE (front view) ============ -->
+            <g class="scn" id="sc-puzzle">
+              <text x="600" y="52" class="scene-note">Ground pallets slide sideways to open a gap · the pallet above comes down</text>
+              <rect x="190" y="252" width="830" height="8" class="beam"/>
+              <rect x="190" y="412" width="830" height="8" class="beam"/>
+              <rect x="190" y="252" width="12" height="368" class="post"/><rect x="460" y="252" width="12" height="368" class="post"/>
+              <rect x="738" y="252" width="12" height="368" class="post"/><rect x="1008" y="252" width="12" height="368" class="post"/>
+              <line x1="202" y1="610" x2="1008" y2="610" class="rail"/>
+              <g id="pz-u0"><rect x="-122" y="0" width="244" height="12" class="pal"/><use href="#sym-car-rear" x="-90" y="-120" width="180" height="120" class="c-white"/></g>
+              <g id="pz-u2"><rect x="-122" y="0" width="244" height="12" class="pal"/><use href="#sym-car-rear" x="-90" y="-120" width="180" height="120" class="c-white"/></g>
+              <g id="pz-g0"><rect x="-122" y="0" width="244" height="12" class="pal"/><use href="#sym-car-rear" x="-90" y="-120" width="180" height="120" class="c-white"/></g>
+              <g id="pz-g1"><rect x="-122" y="0" width="244" height="12" class="pal"/><use href="#sym-car-rear" x="-90" y="-120" width="180" height="120" class="c-slate"/></g>
+              <g id="pz-u1"><rect x="-122" y="0" width="244" height="12" class="pal pal-lift"/>
+                <g id="pz-car"><use href="#sym-car-rear" x="-90" y="-120" width="180" height="120" class="c-blue"/></g></g>
             </g>
 
-            <!-- ============ BIKES (step 6) ============ -->
-            <g class="g-bike" data-from="6" data-to="6">
-              <rect x="260" y="240" width="680" height="380" class="frame"/>
-              <g class="bk-row"><rect x="272" y="360" width="656" height="10" class="pal"/>
-                <use href="#sym-bike" x="300" y="300" width="120" height="60" class="c-blue"/>
-                <use href="#sym-bike" x="450" y="300" width="120" height="60" class="c-red"/>
-                <use href="#sym-bike" x="600" y="300" width="120" height="60" class="c-slate"/>
-                <use href="#sym-bike" x="750" y="300" width="120" height="60" class="c-white"/>
+            <!-- ============ 4 · CANTILEVER (front view) ============ -->
+            <g class="scn" id="sc-cant">
+              <text x="600" y="52" class="scene-note">Post on one side only · nothing to steer around at the entry</text>
+              <rect x="800" y="170" width="38" height="450" class="post"/>
+              <rect x="786" y="610" width="66" height="10" class="beam"/>
+              <g id="cv-car-b"><use href="#sym-car-rear" x="-100" y="-133" width="200" height="133" class="c-slate"/></g>
+              <g id="cv-plat">
+                <rect x="790" y="-70" width="58" height="96" rx="4" class="carriage"/>
+                <path d="M800 -48 L800 14 L712 14 Z" class="bracket"/>
+                <rect x="370" y="0" width="430" height="14" class="pal"/><rect x="370" y="0" width="430" height="4" class="pal-top"/>
               </g>
-              <g class="bk-row"><rect x="272" y="490" width="656" height="10" class="pal"/>
-                <use href="#sym-bike" x="300" y="430" width="120" height="60" class="c-white"/>
-                <use href="#sym-bike" x="450" y="430" width="120" height="60" class="c-slate"/>
-                <use href="#sym-bike" x="600" y="430" width="120" height="60" class="c-blue"/>
-                <use href="#sym-bike" x="750" y="430" width="120" height="60" class="c-red"/>
+              <g id="cv-car-a"><use href="#sym-car-rear" x="-100" y="-133" width="200" height="133" class="c-white"/></g>
+            </g>
+
+            <!-- ============ 5 · THREE LEVEL STACK (side view) ============ -->
+            <g class="scn" id="sc-three">
+              <text x="600" y="52" class="scene-note">Dependent system · the levels below clear before a platform comes down</text>
+              <rect x="356" y="118" width="12" height="502" class="post-rear"/>
+              <rect x="832" y="118" width="12" height="502" class="post-rear"/>
+              <rect x="330" y="108" width="540" height="10" class="beam"/>
+              <rect x="330" y="108" width="20" height="512" class="post"/>
+              <rect x="850" y="108" width="20" height="512" class="post"/>
+              <g id="tl-car-0"><use href="#sym-car" x="-130" y="-96" width="260" height="96" class="c-slate"/></g>
+              <g id="tl-p2"><rect x="350" y="0" width="500" height="14" class="pal"/><rect x="350" y="0" width="500" height="4" class="pal-top"/></g>
+              <g id="tl-car-2"><use href="#sym-car" x="-130" y="-96" width="260" height="96" class="c-white"/></g>
+              <g id="tl-p1"><rect x="350" y="0" width="500" height="14" class="pal"/><rect x="350" y="0" width="500" height="4" class="pal-top"/>
+                <path d="M350 0 L304 14 L350 14 Z M850 0 L896 14 L850 14 Z" class="pal-ramp"/></g>
+              <g id="tl-car-1"><use href="#sym-car" x="-130" y="-96" width="260" height="96" class="c-red"/></g>
+            </g>
+
+            <!-- ============ 6 · TOWER (front section) ============ -->
+            <g class="scn" id="sc-tower">
+              <text x="600" y="52" class="scene-note">Lift runs up the centre · pallets transfer to slots on either side</text>
+              <rect x="390" y="80" width="420" height="540" class="frame"/>
+              <rect x="531" y="80" width="138" height="540" class="shaft"/>
+              <g class="tw-slots">
+                <path d="M390 520 H531 M669 520 H810 M390 430 H531 M669 430 H810 M390 340 H531 M669 340 H810 M390 250 H531 M669 250 H810 M390 160 H531 M669 160 H810"/>
               </g>
-              <g class="bk-row">
-                <use href="#sym-bike" x="300" y="560" width="120" height="60" class="c-red"/>
-                <use href="#sym-bike" x="450" y="560" width="120" height="60" class="c-white"/>
-                <use href="#sym-bike" x="600" y="560" width="120" height="60" class="c-slate"/>
-                <use href="#sym-bike" x="750" y="560" width="120" height="60" class="c-blue"/>
+              <g class="tw-cars">
+                <use href="#sym-car-rear" x="406" y="448" width="108" height="72" class="c-white"/><use href="#sym-car-rear" x="686" y="448" width="108" height="72" class="c-slate"/>
+                <use href="#sym-car-rear" x="406" y="358" width="108" height="72" class="c-blue"/><use href="#sym-car-rear" x="686" y="358" width="108" height="72" class="c-white"/>
+                <use href="#sym-car-rear" x="686" y="268" width="108" height="72" class="c-red"/>
+                <use href="#sym-car-rear" x="406" y="178" width="108" height="72" class="c-slate"/><use href="#sym-car-rear" x="686" y="178" width="108" height="72" class="c-blue"/>
+                <use href="#sym-car-rear" x="406" y="88" width="108" height="72" class="c-white"/><use href="#sym-car-rear" x="686" y="88" width="108" height="72" class="c-slate"/>
               </g>
-              <text x="600" y="676" class="scene-note">Three level parking — 14 bikes in 5.4 metres of space</text>
+              <rect x="400" y="300" width="120" height="36" rx="4" class="plan-free"/>
+              <g id="tw-lift"><rect x="-64" y="0" width="128" height="10" class="carriage"/><path d="M-64 0 V-84 M64 0 V-84" class="lift-guide"/></g>
+              <g id="tw-pal"><rect x="-62" y="-4" width="124" height="8" class="pal pal-lift"/>
+                <g id="tw-car"><use href="#sym-car-rear" x="-54" y="-76" width="108" height="72" class="c-red"/></g></g>
+            </g>
+
+            <!-- ============ 7 · PIT STACK (side view, pit cut away) ============ -->
+            <g class="scn" id="sc-pit">
+              <text x="600" y="52" class="scene-note">Both platforms move together · one car below ground, one at ground level</text>
+              <rect x="318" y="620" width="564" height="160" class="pit"/>
+              <rect x="318" y="620" width="564" height="6" class="pit-lip"/>
+              <rect x="356" y="300" width="12" height="476" class="post-rear"/>
+              <rect x="832" y="300" width="12" height="476" class="post-rear"/>
+              <rect x="330" y="290" width="540" height="10" class="beam"/>
+              <rect x="330" y="290" width="20" height="486" class="post"/>
+              <rect x="850" y="290" width="20" height="486" class="post"/>
+              <g id="pt-frame">
+                <path d="M362 0 V150 M838 0 V150" class="link"/>
+                <rect x="350" y="0" width="500" height="14" class="pal"/><rect x="350" y="0" width="500" height="4" class="pal-top"/>
+                <rect x="350" y="150" width="500" height="14" class="pal"/><rect x="350" y="150" width="500" height="4" class="pal-top"/>
+              </g>
+              <g id="pt-car-b"><use href="#sym-car" x="-130" y="-96" width="260" height="96" class="c-blue"/></g>
+              <g id="pt-car-a"><use href="#sym-car" x="-130" y="-96" width="260" height="96" class="c-white"/></g>
             </g>
           </svg>
+          <button type="button" class="anim-nav anim-prev" aria-label="Previous system"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="anim-nav anim-next" aria-label="Next system"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
       <figcaption class="anim-cap">
         <span class="anim-text">
-          <strong id="animName">Two &amp; Three Level Stack</strong>
-          <span id="animLine">Two cars where one used to fit.</span>
+          <strong id="animName">Four Pole Stack</strong>
+          <span id="animLine">A platform lifts one car so a second can park underneath.</span>
         </span>
         <span class="anim-dots" role="group" aria-label="Show a system">
-          <button type="button" data-slide="0" aria-label="Two and three level stack"><i></i></button>
-          <button type="button" data-slide="1" aria-label="Pit stack"><i></i></button>
-          <button type="button" data-slide="2" aria-label="Puzzle system"><i></i></button>
-          <button type="button" data-slide="3" aria-label="Tower parking"><i></i></button>
-          <button type="button" data-slide="4" aria-label="Bike stack parking"><i></i></button>
+          <button type="button" aria-label="Four pole stack"><i></i></button>
+          <button type="button" aria-label="Horizontal shuttle"><i></i></button>
+          <button type="button" aria-label="Puzzle"><i></i></button>
+          <button type="button" aria-label="Cantilever"><i></i></button>
+          <button type="button" aria-label="Three level stack"><i></i></button>
+          <button type="button" aria-label="Tower"><i></i></button>
+          <button type="button" aria-label="Pit stack"><i></i></button>
         </span>
       </figcaption>
     </figure>
@@ -355,7 +365,7 @@
     <div class="svc reveal" id="svc" aria-roledescription="carousel" aria-label="Parking systems">
       <div class="svc-track" id="svcTrack">
         <article class="svc-card" id="four-pole" aria-roledescription="slide" aria-label="1 of 7">
-          <div class="svc-media is-photo"><img src="img/kay9-four-pole-04.jpg" alt="Four Pole Stack parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">6 photos · 4 videos</span></div>
+          <div class="svc-media is-photo"><img src="img/kay9-four-pole-05.jpg" style="object-position:50% 22%" alt="Four Pole Stack parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">6 photos · 4 videos</span></div>
           <div class="svc-body">
             <p class="step-no">System 01 / 07</p>
             <h3>Four Pole Stack</h3>
@@ -368,7 +378,7 @@
           </div>
         </article>
         <article class="svc-card" id="horizontal" aria-roledescription="slide" aria-label="2 of 7">
-          <div class="svc-media is-photo"><img src="video/horizontal-v02.jpg" alt="Horizontal (Shuttle Type Back-To-Back) parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">2 videos</span></div>
+          <div class="svc-media is-photo"><img src="video/horizontal-v01.jpg" alt="Horizontal (Shuttle Type Back-To-Back) parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">2 videos</span></div>
           <div class="svc-body">
             <p class="step-no">System 02 / 07</p>
             <h3>Horizontal (Shuttle Type Back-To-Back)</h3>
@@ -399,7 +409,7 @@
           </div>
         </article>
         <article class="svc-card" id="cantilever" aria-roledescription="slide" aria-label="4 of 7">
-          <div class="svc-media is-photo"><img src="img/kay9-cantilever-02.jpg" alt="Single/Two Pole Cantilever parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">3 photos · 5 videos</span></div>
+          <div class="svc-media is-photo"><img src="img/kay9-cantilever-02.jpg" style="object-position:50% 22%" alt="Single/Two Pole Cantilever parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">3 photos · 5 videos</span></div>
           <div class="svc-body">
             <p class="step-no">System 04 / 07</p>
             <h3>Single/Two Pole Cantilever</h3>
@@ -430,7 +440,7 @@
           </div>
         </article>
         <article class="svc-card" id="tower" aria-roledescription="slide" aria-label="6 of 7">
-          <div class="svc-media is-photo"><img src="img/kay9-tower-03.jpg" alt="Tower parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">6 photos · 2 videos</span></div>
+          <div class="svc-media is-photo"><img src="img/kay9-tower-03.jpg" style="object-position:50% 72%" alt="Tower parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">6 photos · 2 videos</span></div>
           <div class="svc-body">
             <p class="step-no">System 06 / 07</p>
             <h3>Tower</h3>
@@ -448,7 +458,7 @@
           </div>
         </article>
         <article class="svc-card" id="pit-stack" aria-roledescription="slide" aria-label="7 of 7">
-          <div class="svc-media is-photo"><img src="video/pit-stack-v01.jpg" alt="Two/Three Level Pit Stack parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">2 photos · 2 videos</span></div>
+          <div class="svc-media is-photo"><img src="video/pit-stack-v02.jpg" style="object-position:50% 30%" alt="Two/Three Level Pit Stack parking system installed by Kay9" loading="lazy"><span class="svc-media-tag">2 photos · 2 videos</span></div>
           <div class="svc-body">
             <p class="step-no">System 07 / 07</p>
             <h3>Two/Three Level Pit Stack</h3>
@@ -663,16 +673,16 @@
     <div class="gal">
       <div class="gal-stage" aria-live="polite"></div>
       <div class="gal-thumbs" role="group" aria-label="Photos and videos">
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-01.jpg" aria-label="Photo 1"><img src="img/kay9-four-pole-01.jpg" alt="Four Pole Stack — photo 1" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-02.jpg" aria-label="Photo 2"><img src="img/kay9-four-pole-02.jpg" alt="Four Pole Stack — photo 2" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-03.jpg" aria-label="Photo 3"><img src="img/kay9-four-pole-03.jpg" alt="Four Pole Stack — photo 3" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-04.jpg" aria-label="Photo 4"><img src="img/kay9-four-pole-04.jpg" alt="Four Pole Stack — photo 4" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-05.jpg" aria-label="Photo 5"><img src="img/kay9-four-pole-05.jpg" alt="Four Pole Stack — photo 5" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-06.jpg" aria-label="Photo 6"><img src="img/kay9-four-pole-06.jpg" alt="Four Pole Stack — photo 6" loading="lazy"></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/four-pole-v01.mp4" data-poster="video/four-pole-v01.jpg" aria-label="Video 1"><img src="video/four-pole-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-05.jpg" aria-label="Photo 1"><img src="img/kay9-four-pole-05.jpg" alt="Four Pole Stack — photo 1" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-03.jpg" aria-label="Photo 2"><img src="img/kay9-four-pole-03.jpg" alt="Four Pole Stack — photo 2" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-04.jpg" aria-label="Photo 3"><img src="img/kay9-four-pole-04.jpg" alt="Four Pole Stack — photo 3" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-06.jpg" aria-label="Photo 4"><img src="img/kay9-four-pole-06.jpg" alt="Four Pole Stack — photo 4" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-01.jpg" aria-label="Photo 5"><img src="img/kay9-four-pole-01.jpg" alt="Four Pole Stack — photo 5" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-four-pole-02.jpg" aria-label="Photo 6"><img src="img/kay9-four-pole-02.jpg" alt="Four Pole Stack — photo 6" loading="lazy"></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/four-pole-v03.mp4" data-poster="video/four-pole-v03.jpg" aria-label="Video 1"><img src="video/four-pole-v03.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
       <button type="button" class="gal-th is-vid" data-type="video" data-src="video/four-pole-v02.mp4" data-poster="video/four-pole-v02.jpg" aria-label="Video 2"><img src="video/four-pole-v02.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/four-pole-v03.mp4" data-poster="video/four-pole-v03.jpg" aria-label="Video 3"><img src="video/four-pole-v03.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/four-pole-v04.mp4" data-poster="video/four-pole-v04.jpg" aria-label="Video 4"><img src="video/four-pole-v04.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/four-pole-v04.mp4" data-poster="video/four-pole-v04.jpg" aria-label="Video 3"><img src="video/four-pole-v04.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/four-pole-v01.mp4" data-poster="video/four-pole-v01.jpg" aria-label="Video 4"><img src="video/four-pole-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
       </div>
     </div>
     <p class="spec-enq">Specifications, models and dimensions for this system are provided on enquiry. Share your site details and we will size the system for you.</p>
@@ -706,10 +716,10 @@
     <div class="gal">
       <div class="gal-stage" aria-live="polite"></div>
       <div class="gal-thumbs" role="group" aria-label="Photos and videos">
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/puzzle-v01.mp4" data-poster="video/puzzle-v01.jpg" aria-label="Video 1"><img src="video/puzzle-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/puzzle-v02.mp4" data-poster="video/puzzle-v02.jpg" aria-label="Video 2"><img src="video/puzzle-v02.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
-      <button type="button" class="gal-th is-dwg" data-type="img" data-src="assets/img/puzzle-01.png" aria-label="Multi level puzzle parking system"><img src="assets/img/puzzle-01.png" alt="Multi level puzzle parking system" loading="lazy"></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/puzzle-v02.mp4" data-poster="video/puzzle-v02.jpg" aria-label="Video 1"><img src="video/puzzle-v02.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/puzzle-v01.mp4" data-poster="video/puzzle-v01.jpg" aria-label="Video 2"><img src="video/puzzle-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
       <button type="button" class="gal-th" data-type="img" data-src="assets/img/puzzle-02.jpg" aria-label="Puzzle parking pallets inside a car park"><img src="assets/img/puzzle-02.jpg" alt="Puzzle parking pallets inside a car park" loading="lazy"></button>
+      <button type="button" class="gal-th is-dwg" data-type="img" data-src="assets/img/puzzle-01.png" aria-label="Multi level puzzle parking system"><img src="assets/img/puzzle-01.png" alt="Multi level puzzle parking system" loading="lazy"></button>
       </div>
     </div>
     <div class="spec-cols">
@@ -756,14 +766,14 @@
     <div class="gal">
       <div class="gal-stage" aria-live="polite"></div>
       <div class="gal-thumbs" role="group" aria-label="Photos and videos">
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-cantilever-01.jpg" aria-label="Photo 1"><img src="img/kay9-cantilever-01.jpg" alt="Single/Two Pole Cantilever — photo 1" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-cantilever-02.jpg" aria-label="Photo 2"><img src="img/kay9-cantilever-02.jpg" alt="Single/Two Pole Cantilever — photo 2" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-cantilever-02.jpg" aria-label="Photo 1"><img src="img/kay9-cantilever-02.jpg" alt="Single/Two Pole Cantilever — photo 1" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-cantilever-01.jpg" aria-label="Photo 2"><img src="img/kay9-cantilever-01.jpg" alt="Single/Two Pole Cantilever — photo 2" loading="lazy"></button>
       <button type="button" class="gal-th" data-type="img" data-src="img/kay9-cantilever-03.jpg" aria-label="Photo 3"><img src="img/kay9-cantilever-03.jpg" alt="Single/Two Pole Cantilever — photo 3" loading="lazy"></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/cantilever-v01.mp4" data-poster="video/cantilever-v01.jpg" aria-label="Video 1"><img src="video/cantilever-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/cantilever-v02.mp4" data-poster="video/cantilever-v02.jpg" aria-label="Video 2"><img src="video/cantilever-v02.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/cantilever-v05.mp4" data-poster="video/cantilever-v05.jpg" aria-label="Video 1"><img src="video/cantilever-v05.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/cantilever-v01.mp4" data-poster="video/cantilever-v01.jpg" aria-label="Video 2"><img src="video/cantilever-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
       <button type="button" class="gal-th is-vid" data-type="video" data-src="video/cantilever-v03.mp4" data-poster="video/cantilever-v03.jpg" aria-label="Video 3"><img src="video/cantilever-v03.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/cantilever-v04.mp4" data-poster="video/cantilever-v04.jpg" aria-label="Video 4"><img src="video/cantilever-v04.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/cantilever-v05.mp4" data-poster="video/cantilever-v05.jpg" aria-label="Video 5"><img src="video/cantilever-v05.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/cantilever-v02.mp4" data-poster="video/cantilever-v02.jpg" aria-label="Video 4"><img src="video/cantilever-v02.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/cantilever-v04.mp4" data-poster="video/cantilever-v04.jpg" aria-label="Video 5"><img src="video/cantilever-v04.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
       </div>
     </div>
     <p class="spec-enq">Specifications, models and dimensions for this system are provided on enquiry. Share your site details and we will size the system for you.</p>
@@ -782,12 +792,12 @@
       <div class="gal-thumbs" role="group" aria-label="Photos and videos">
       <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-01.jpg" aria-label="Photo 1"><img src="img/kay9-three-level-01.jpg" alt="Three Level Stack — photo 1" loading="lazy"></button>
       <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-02.jpg" aria-label="Photo 2"><img src="img/kay9-three-level-02.jpg" alt="Three Level Stack — photo 2" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-03.jpg" aria-label="Photo 3"><img src="img/kay9-three-level-03.jpg" alt="Three Level Stack — photo 3" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-04.jpg" aria-label="Photo 4"><img src="img/kay9-three-level-04.jpg" alt="Three Level Stack — photo 4" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-05.jpg" aria-label="Photo 5"><img src="img/kay9-three-level-05.jpg" alt="Three Level Stack — photo 5" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-06.jpg" aria-label="Photo 6"><img src="img/kay9-three-level-06.jpg" alt="Three Level Stack — photo 6" loading="lazy"></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/three-level-v01.mp4" data-poster="video/three-level-v01.jpg" aria-label="Video 1"><img src="video/three-level-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-04.jpg" aria-label="Photo 3"><img src="img/kay9-three-level-04.jpg" alt="Three Level Stack — photo 3" loading="lazy"></button>
       <button type="button" class="gal-th" data-type="img" data-src="assets/img/three-level-01.jpg" aria-label="Three level stack parking with two cars raised above the driveway"><img src="assets/img/three-level-01.jpg" alt="Three level stack parking with two cars raised above the driveway" loading="lazy"></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/three-level-v01.mp4" data-poster="video/three-level-v01.jpg" aria-label="Video 1"><img src="video/three-level-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-06.jpg" aria-label="Photo 4"><img src="img/kay9-three-level-06.jpg" alt="Three Level Stack — photo 4" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-05.jpg" aria-label="Photo 5"><img src="img/kay9-three-level-05.jpg" alt="Three Level Stack — photo 5" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-three-level-03.jpg" aria-label="Photo 6"><img src="img/kay9-three-level-03.jpg" alt="Three Level Stack — photo 6" loading="lazy"></button>
       <button type="button" class="gal-th is-dwg" data-type="img" data-src="assets/img/three-level-02.png" aria-label="Rendering of a three level stack parking system"><img src="assets/img/three-level-02.png" alt="Rendering of a three level stack parking system" loading="lazy"></button>
       </div>
     </div>
@@ -842,13 +852,13 @@
     <div class="gal">
       <div class="gal-stage" aria-live="polite"></div>
       <div class="gal-thumbs" role="group" aria-label="Photos and videos">
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-tower-01.jpg" aria-label="Photo 1"><img src="img/kay9-tower-01.jpg" alt="Tower — photo 1" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-tower-02.jpg" aria-label="Photo 2"><img src="img/kay9-tower-02.jpg" alt="Tower — photo 2" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-tower-03.jpg" aria-label="Photo 3"><img src="img/kay9-tower-03.jpg" alt="Tower — photo 3" loading="lazy"></button>
-      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-tower-04.jpg" aria-label="Photo 4"><img src="img/kay9-tower-04.jpg" alt="Tower — photo 4" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-tower-03.jpg" aria-label="Photo 1"><img src="img/kay9-tower-03.jpg" alt="Tower — photo 1" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-tower-01.jpg" aria-label="Photo 2"><img src="img/kay9-tower-01.jpg" alt="Tower — photo 2" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-tower-04.jpg" aria-label="Photo 3"><img src="img/kay9-tower-04.jpg" alt="Tower — photo 3" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="img/kay9-tower-02.jpg" aria-label="Photo 4"><img src="img/kay9-tower-02.jpg" alt="Tower — photo 4" loading="lazy"></button>
+      <button type="button" class="gal-th" data-type="img" data-src="assets/img/tower-02.jpg" aria-label="Steel tower parking structure rising alongside a building"><img src="assets/img/tower-02.jpg" alt="Steel tower parking structure rising alongside a building" loading="lazy"></button>
       <button type="button" class="gal-th is-vid" data-type="video" data-src="video/tower-v01.mp4" data-poster="video/tower-v01.jpg" aria-label="Video 1"><img src="video/tower-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
       <button type="button" class="gal-th is-vid" data-type="video" data-src="video/tower-v02.mp4" data-poster="video/tower-v02.jpg" aria-label="Video 2"><img src="video/tower-v02.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
-      <button type="button" class="gal-th" data-type="img" data-src="assets/img/tower-02.jpg" aria-label="Steel tower parking structure rising alongside a building"><img src="assets/img/tower-02.jpg" alt="Steel tower parking structure rising alongside a building" loading="lazy"></button>
       <button type="button" class="gal-th is-dwg" data-type="img" data-src="assets/img/tower-01.png" aria-label="Line drawing of a tower parking system"><img src="assets/img/tower-01.png" alt="Line drawing of a tower parking system" loading="lazy"></button>
       </div>
     </div>
@@ -888,8 +898,8 @@
     <div class="gal">
       <div class="gal-stage" aria-live="polite"></div>
       <div class="gal-thumbs" role="group" aria-label="Photos and videos">
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/pit-stack-v01.mp4" data-poster="video/pit-stack-v01.jpg" aria-label="Video 1"><img src="video/pit-stack-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
-      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/pit-stack-v02.mp4" data-poster="video/pit-stack-v02.jpg" aria-label="Video 2"><img src="video/pit-stack-v02.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/pit-stack-v02.mp4" data-poster="video/pit-stack-v02.jpg" aria-label="Video 1"><img src="video/pit-stack-v02.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
+      <button type="button" class="gal-th is-vid" data-type="video" data-src="video/pit-stack-v01.mp4" data-poster="video/pit-stack-v01.jpg" aria-label="Video 2"><img src="video/pit-stack-v01.jpg" alt="" loading="lazy"><span class="gal-play" aria-hidden="true"></span></button>
       <button type="button" class="gal-th is-dwg" data-type="img" data-src="assets/img/pit-stack-01.png" aria-label="Pit stack parking system with cars above and below ground level"><img src="assets/img/pit-stack-01.png" alt="Pit stack parking system with cars above and below ground level" loading="lazy"></button>
       <button type="button" class="gal-th is-dwg" data-type="img" data-src="assets/img/pit-stack-02.png" aria-label="Rendering of a four post pit stack parking system"><img src="assets/img/pit-stack-02.png" alt="Rendering of a four post pit stack parking system" loading="lazy"></button>
       </div>
@@ -939,7 +949,7 @@
 </dialog>
 
 <script src="js/nav.js?v=7" defer></script>
-<script src="js/hero.js?v=7" defer></script>
+<script src="js/hero.js?v=9" defer></script>
 <script src="js/services.js?v=6" defer></script>
 <script src="js/gallery.js?v=1" defer></script>
 </body>

@@ -28,7 +28,7 @@
         'fp-car-b': { x: [[5300, -180], [7500, 600]], y: [[0, 620]] }
       } },
 
-    { scene: 'sc-horiz', name: 'Horizontal (Shuttle Type Back-To-Back)',
+    { scene: 'sc-horiz', name: 'Horizontal Shuttle Parking System',
       line: 'The lift turns and lowers the car; a shuttle carries it to a free bay.',
       dur: 11600,
       tracks: {
